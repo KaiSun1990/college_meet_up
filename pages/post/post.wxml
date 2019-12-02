@@ -1,0 +1,24 @@
+<!--pages/post/post.wxml-->
+<view class="form-container">
+  <form bindsubmit="formSubmit">
+    <view class="section">
+      <view>Title</view>
+      <input name="title" value="{{title}}" data-type="name"></input>
+    </view>
+    <view class="section">
+      <view>Location</view>
+      <input name="location" value="{{location}}" data-type="name"></input>
+    </view>
+    <view class="section">
+      <view>Date</view>
+      <input name="date" value="{{date}}" data-type="date"></input>
+    </view>
+    <view class="section">
+      <view>Content</view>
+      <view class="form-content">
+        <input name="content" value="{{content}}" data-type="content"></input>
+      </view>
+      <button form-type="submit">Submit</button>
+    </view>
+  </form>
+</view>

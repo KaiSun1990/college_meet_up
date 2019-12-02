@@ -1,9 +1,10 @@
 <!--pages/edit_profile/edit_profile.wxml-->
 <view class="profile-container">
-  <image class="avatar-large" alt="avatar-large"        src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+  <image class="avatar-large" alt="avatar-large"        src="{{user.avatar}}" />
   <view class="profile-details">  
-    <view class="h1">{{users[0].user_name}}</view>
-    <view>{{users[0].city}}</view>
+    <view class="h1">{{user.nickname}}</view>
+    <view>{{user.city}}</view>
+    <view>{{user.province}}</view>
     <view class="biotext">{{users[0].bio}}</view>
   </view>
 </view>
@@ -11,7 +12,7 @@
 <view class="form-container">
   <form bindsubmit="formSubmit">
     <view class="section">
-      <view>Username</view>
+      <view>Nickname</view>
       <input name="user_name" placeholder="{{users[0].user_name}}"></input>
     </view>
     <view class="section">

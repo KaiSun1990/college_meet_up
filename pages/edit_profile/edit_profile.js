@@ -5,14 +5,28 @@ Page({
    * Page initial data
    */
   data: {
-    users: [{ user_name: "John Doe", city: "Paris", bio: "French globetrotter with a passion for tech" }]
-  },
+    },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    wx.BaaS.auth.getCurrentUser().then(user => {
 
+      // user 为 currentUser 
+      console.log(user)
+      console.log(user.nickname)
+      console.log(user.city)
+      console.log(user.province)
+      console.log(user.country)
+      console.log(user.gender)
+      this.setData({ user })
+    }).catch(err => {
+      // HError
+      if (err.code === 604) {
+        console.log('用户未登录')
+      }
+    })
   },
 
   /**

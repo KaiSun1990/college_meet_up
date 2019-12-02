@@ -1,36 +1,18 @@
-// pages/user/user.js
+// pages/post/post.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
+    user_data : []
   },
-  navigateToEditProfile: function () {
-    wx.navigateTo({
-      url: '/pages/edit_profile/edit_profile'
-    })
-  },
+
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    wx.BaaS.auth.getCurrentUser().then(user => {
 
-      // user 为 currentUser 
-      console.log(user)
-      console.log(user.nickname)
-      console.log(user.city)
-      console.log(user.province)
-      console.log(user.country)
-      console.log(user.gender)
-      this.setData({user})
-    }).catch(err => {
-      // HError
-      if (err.code === 604) {
-        console.log('用户未登录')
-      }
-    })
   },
 
   /**
