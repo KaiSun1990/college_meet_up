@@ -1,11 +1,11 @@
-// pages/user/user.js
+// pages/edit_profile/edit_profile.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    users: [{first_name: "John", last_name: "Doe", city: "Paris"}]
+
   },
 
   /**

@@ -1,2 +1,10 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+
+<view class="profile-container">
+  <image class="avatar-large" alt="avatar-large"        src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+  <view class="profile-details">  
+  <view class="h1">{{users[0].first_name}} {{users[0].last_name}}</view>
+  <view>{{users[0].city}}</view>
+  <wux-button block type="positive" url="pages/edit_profile/edit_profile">Edit Profile</wux-button>
+  </view>
+</view>
