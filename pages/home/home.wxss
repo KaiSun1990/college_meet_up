@@ -1,0 +1,94 @@
+/* pages/home/home.wxss */
+@import "../../colorui/main.wxss";
+@import "../../colorui/icon.wxss";
+
+@import '../../dist/styles/index.wxss';
+
+
+	.tower-swiper .tower-item {
+		transform: scale(calc(0.5 + var(--index) / 10));
+		margin-left: calc(var(--left) * 100rpx - 150rpx);
+		z-index: var(--index);
+	}
+
+.top_bar {
+ margin:30px;
+
+}
+
+.group {
+ margin:30px;
+
+}
+
+.event_filter {
+ margin:30px;
+
+}
+
+.event_card {
+  overflow: hidden;
+  height: 200rpx;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+  position:relative;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+}
+
+.event_card .event_img {
+  height: 100%;
+  width: 200rpx;
+  object-fit: cover;
+}
+
+.event_card .avatar {
+  width: 98rpx;
+  height: 98rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  position:absolute;
+  bottom:-10rpx;
+  right:15rpx;
+}
+
+
+
+.event_card .h2 {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.event_card .p {
+  font-size: 24rpx;
+  line-height: 1;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8rpx;
+}
+
+.event_card .event_card-infos {
+  padding: 32rpx;
+}
+
+.events .event_title {
+  font-size: 52rpx;
+  font-weight: bold;
+  margin: 5rpx;
+  padding: 10rpx; 
+}
+
+.button_save {
+height: 60rpx;
+width: 60rpx;
+position: absolute;
+bottom: 130rpx;
+right: 15rpx;
+font-weight: lighter;
+
+}
+

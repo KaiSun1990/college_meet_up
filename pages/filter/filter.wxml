@@ -1,0 +1,7 @@
+
+  <view class="page">
+      <view class="page__bd">
+          <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
+      </view>
+  </view>
+

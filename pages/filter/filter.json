@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+
+    "wux-filterbar": "../../dist/filterbar/index"
+  }
+}
