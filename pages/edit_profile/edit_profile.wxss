@@ -1,0 +1,62 @@
+@import '../../dist/styles/index.wxss';
+.avatar-large {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 50%;
+}
+
+.h1 {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.biotext {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 32rpx;
+}
+
+.profile-container {
+  display: flex;
+  background-color: rgb(240, 240, 240);
+  height: 350rpx;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.profile-details {
+  height: 160rpx;
+  width: 300rpx;
+}
+
+.form-container {
+  margin: 30rpx 50 rpx;
+  padding: 50rpx;
+  background-color: aliceblue;
+}
+
+.form-content {
+  height: 250rpx;
+  background-color: white;
+  text-align: top;
+}
+
+.section {
+  margin-top: 14rpx;
+}
+
+input {
+  background-color: white;
+  padding: 20rpx;
+}
+
+textarea {
+  padding: 20rpx;
+  width: 500rpx;
+}
+
+button {
+  margin-top: 30rpx;
+}
+

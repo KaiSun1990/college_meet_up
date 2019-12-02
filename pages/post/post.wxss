@@ -1,0 +1,42 @@
+/* pages/post/post.wxss */
+.form-container {
+  height: 70%;
+  overflow: scroll;
+  padding: 60rpx;
+  background-color: rgba(236, 229, 229, 0.849);
+}
+.section {
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  font-size: 36rpx;
+  line-height: 1.4;
+  margin-bottom: 20rpx;
+}
+input {
+  background-color: white;
+  padding: 16rpx 36rpx;
+  border-radius: 10rpx;
+  color: black;
+  font-weight: lighter;
+}
+.form-content {
+  height:350rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  margin-bottom: 0;
+}
+button {
+  color: #4A4A4A;
+  background: #FFFFFF;
+  border: 1px solid #4A4A4A;
+  padding: 8rpx 24rpx;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: lighter;
+  width: 200rpx;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin: 0 auto;
+  margin-top: 30rpx;
+}

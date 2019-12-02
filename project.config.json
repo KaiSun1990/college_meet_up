@@ -65,6 +65,14 @@
 					"id": -1,
 					"name": "filter",
 					"pathName": "pages/filter/filter",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "Post",
+					"pathName": "pages/post/post",
+					"query": "",
 					"scene": null
 				}
 			]
