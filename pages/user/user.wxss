@@ -1,5 +1,5 @@
 /* pages/user/user.wxss */
-@import '../dist/styles/index.wxss';
+@import '../../dist/styles/index.wxss';
 .avatar-large {
   width: 240rpx;
   height: 240rpx;
@@ -24,3 +24,8 @@
   width: 300rpx;
 }
 
+.header {
+  background-color: powderblue;
+  justify-content: space-between;
+  display: flex;
+}
