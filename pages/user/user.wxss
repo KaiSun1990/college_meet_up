@@ -9,6 +9,13 @@
 .h1 {
   font-weight: bold;
   font-size: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.biotext {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 32rpx;
 }
 
 .profile-container {
@@ -22,10 +29,4 @@
 .profile-details {
   height: 160rpx;
   width: 300rpx;
-}
-
-.header {
-  background-color: powderblue;
-  justify-content: space-between;
-  display: flex;
 }

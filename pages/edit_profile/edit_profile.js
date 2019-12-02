@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-
+    users: [{ user_name: "John Doe", city: "Paris", bio: "French globetrotter with a passion for tech" }]
   },
 
   /**

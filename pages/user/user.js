@@ -5,9 +5,13 @@ Page({
    * Page initial data
    */
   data: {
-    users: [{first_name: "John", last_name: "Doe", city: "Paris"}]
+    users: [{ user_name: "John Doe", city: "Paris", bio: "French globetrotter with a passion for tech" }]
   },
-
+  navigateToEditProfile: function () {
+    wx.navigateTo({
+      url: '/pages/edit_profile/edit_profile'
+    })
+  },
   /**
    * Lifecycle function--Called when page load
    */

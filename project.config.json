@@ -50,6 +50,13 @@
 					"id": -1,
 					"name": "user",
 					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Edit Profile",
+					"pathName": "pages/edit_profile/edit_profile",
 					"scene": null
 				}
 			]
