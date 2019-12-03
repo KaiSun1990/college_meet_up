@@ -1,4 +1,11 @@
 /* pages/post/post.wxss */
+
+.page {
+  background-color: rgb(15,15,15);
+
+}
+
+
 .form-container {
   height: 100%;
   overflow: scroll;
@@ -89,4 +96,9 @@ input {
 
 .form {
   margin-top:100rpx;
+}
+
+.submit-btn {
+
+  margin-bottom: 30rpx;
 }

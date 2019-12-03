@@ -7,10 +7,29 @@ Page({
       date: undefined,
       description: undefined,
       image: undefined
-    }
+    },
+    dateNow: undefined
   },
 
-  uploadImage() {
+dateToday: function () {
+  let now = new Date();
+  let year = now.getFullYear();
+  let month = now.getMonth() + 1;
+  let day = now.getDate();
+  if (month < 10) {
+    month = '0' + month;
+  };
+  if (day < 10) {
+    day = '0' + day;
+  };
+  let formatDate = year + '-' + month + '-' + day;
+  console.log(formatDate)
+  this.setData({
+    "dateNow": formatDate
+  })
+},
+
+uploadImage: function () {
     let self = this
     wx.chooseImage({
       count: 1,
@@ -47,14 +66,16 @@ Page({
   },
 
   onChangeName: function (e) {
+    console.log(e)
     this.setData({
-      "event.name": e.detail.value
+      "event.name": e.detail.value,
     })
   },
 
   onChangeContent: function (e) {
+    console.log(e)
     this.setData({
-      "event.description": e.detail.value
+      "event.description": e.detail.value,
     })
   },
 
@@ -66,7 +87,7 @@ Page({
     let newEvent = {
       name: this.data.event.name,
       location: this.data.event.location,
-      date: this.data.event.date&this.data.event.time,
+      date: this.data.event.date.concat(" ", this.data.event.time),
       description: this.data.event.description,
       image: this.data.event.image
     }
@@ -74,14 +95,21 @@ Page({
 
     event.set(newEvent).save().then(res => {
       // success
-      console.log(res)
+      console.log("My upload package----->", res)
+      wx.showToast({
+      title: 'Posted',
+      icon: 'success',
+      })
+      wx.reLaunch({
+        url: '/pages/home/home',
+      })
     }, err => {
       //err 为 HError 对象
     })
   },
 
 
-  getLocation() {
+  getLocation: function () {
     wx.getLocation({
       type: 'wgs84',
       success(res) {
@@ -94,10 +122,9 @@ Page({
   },
 
   onLoad: function() {
-
   },
 
   onShow: function() {
-
+    this.dateToday()
   }
 })

@@ -1,7 +1,5 @@
 <view clsss = "container">
 
-  <view class = "h1">Le Wagon Alumni</view>
-
   <view class = "swiper">
     <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
       <swiper-item wx:for="{{swiperList}}" wx:key>
@@ -11,21 +9,16 @@
     </swiper>
     </view>
 
-  <!-- <view class = "group">
-  placeholder-groups
-  </view>
-  <template is="filter" />
-  <view class = "event_filter">
-  placeholder-filter
-  </view> -->
   <view class = "events">
-    <view class = "event_title">Le Wagon activities</view>
+    <view class = "event_title">
+    Upcoming activities
+    </view>
     <view class = "event_card">
-    <image class = "event_img" mode = "aspectFill" src="../../image/cocktails.jpg" />
+    <image class = "event_img" mode = "aspectFill" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
     <view class="event_card-infos">
-      <view class = "h2">Happy Coding Hour</view>
-      <view class = "p">2019年12月10日14:00</view>
-      <view class = "p">软件产业基地4栋B座裙楼1楼One Piece Work</view>
+      <view class = "h2">Event 1 name</view>
+      <view class = "p">Time:Month/Day/Time</view>
+      <view class = "p">36 people are going</view>
       </view>
     <image  class = "avatar" mode = "aspectFill" src = "../../image/avatar.jpg" />
     <image class = "button_save" src = "../../image/save.png" />
