@@ -1,12 +1,14 @@
 <!--pages/post/post.wxml-->
 <view class="form-container">
- <view class='btn-photo' bindtap='uploadImage'>
-  <view class="upload-img">
-    <image class='btnImg' src='../../image/上传照片.png'></image>
-    <view>上传封面</view>
+ <image class='btn-photo' bindtap='uploadImage' src="{{event.image}}" >
+ <view class="upload-img-all" wx:if="{{!event.image}}">
+    <view class="upload-img" >
+      <image class='btnImg' src='../../image/上传照片.png'></image>
+      <view>上传封面</view>
+    </view>
+    <view>高质量的封面图能带来更多浏览哦</view>
   </view>
-  <view>高质量的封面图能带来更多浏览哦</view>
- </view>
+ </image>
 
 <view class="picker-section">
   <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
@@ -27,18 +29,18 @@
   <button bindtap="getLocation">点击获取当前位置</button>
 </view>
 
-  <form bindsubmit="formSubmit">
+  <form class="form">
     <view class="section">
-      <input class="title" value="{{title}}" placeholder="为你的活动写个标题吧" data-type="name"></input>
+      <input class="title" value="{{name}}" placeholder="为你的活动写个标题吧" data-type="name" bindinput = "onChangeName"></input>
     </view>
     <view class="section">
       <view class="form-content">
-        <textarea class="content" value="{{content}}" placeholder="为你的活动写点什么" data-type="content"></textarea>
+        <textarea class="content" value="{{description}}" placeholder="为你的活动写点什么" data-type="content" bindinput = "onChangeContent"></textarea>
       </view>
     </view>
 
   <view class="submit-btn">
-    <button form-type="submit">发布</button>
+    <button type="primary" form-type="submit" bindtap="eventPackageSubmit">发布</button>
   </view>
 
   </form>
