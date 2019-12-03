@@ -72,7 +72,8 @@
 }
 
 .event_card .event_card-infos {
-  padding: 32rpx;
+  padding: 10rpx;
+  width: 300rpx;
 }
 
 .events .event_title {
@@ -92,3 +93,8 @@ font-weight: lighter;
 
 }
 
+.h1 {
+  font-size: 60rpx;
+  font-weight: bold;
+  text-align: center;
+}
