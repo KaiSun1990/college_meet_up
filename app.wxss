@@ -9,3 +9,7 @@
   box-sizing: border-box;
 } 
 
+
+.page__container {
+  
+}
