@@ -1,24 +1,45 @@
 <!--pages/post/post.wxml-->
 <view class="form-container">
+ <view class='btn-photo' bindtap='uploadImage'>
+  <view class="upload-img">
+    <image class='btnImg' src='../../image/上传照片.png'></image>
+    <view>上传封面</view>
+  </view>
+  <view>高质量的封面图能带来更多浏览哦</view>
+ </view>
+
+<view class="picker-section">
+  <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+    <view class="picker">
+      <image class='picker-img' src='../../image/日期.png'></image>
+      <text>{{date || '日期'}}</text>
+    </view>
+  </picker>
+
+  <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+    <view class="picker" >
+      <image class='picker-img' src='../../image/时间.png'></image>
+      <text>{{time || '时间'}}</text>
+    </view>
+  </picker>
+</view>
+<view>
+  <button bindtap="getLocation">点击获取当前位置</button>
+</view>
+
   <form bindsubmit="formSubmit">
     <view class="section">
-      <view>Title</view>
-      <input name="title" value="{{title}}" data-type="name"></input>
+      <input class="title" value="{{title}}" placeholder="为你的活动写个标题吧" data-type="name"></input>
     </view>
     <view class="section">
-      <view>Location</view>
-      <input name="location" value="{{location}}" data-type="name"></input>
-    </view>
-    <view class="section">
-      <view>Date</view>
-      <input name="date" value="{{date}}" data-type="date"></input>
-    </view>
-    <view class="section">
-      <view>Content</view>
       <view class="form-content">
-        <input name="content" value="{{content}}" data-type="content"></input>
+        <textarea class="content" value="{{content}}" placeholder="为你的活动写点什么" data-type="content"></textarea>
       </view>
-      <button form-type="submit">Submit</button>
     </view>
+
+  <view class="submit-btn">
+    <button form-type="submit">发布</button>
+  </view>
+
   </form>
 </view>

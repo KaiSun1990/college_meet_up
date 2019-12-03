@@ -1,66 +1,47 @@
-// pages/post/post.js
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-    user_data : []
+    time: undefined,
+    date: undefined
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
+  uploadImage: function(e) {
+    wx.chooseImage({
+      count: 1,
+      success: (res) => {
+        console.log(res)
+      }
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
+  bindDateChange: function (e) {
+    this.setData({
+      date: e.detail.value
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
+  bindTimeChange: function(e) {
+    this.setData({
+      time: e.detail.value
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
+  getLocation() {
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
+      }
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
+  onLoad: function() {
 
   },
 
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
+  onShow: function() {
 
   }
 })
