@@ -1,42 +1,92 @@
 /* pages/post/post.wxss */
 .form-container {
-  height: 70%;
+  height: 100%;
   overflow: scroll;
-  padding: 60rpx;
-  background-color: rgba(236, 229, 229, 0.849);
+  padding: 10rpx 30rpx;
+  background-color: #FAFAFA;
 }
 .section {
   text-align: left;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 36rpx;
   line-height: 1.4;
   margin-bottom: 20rpx;
 }
+
+.section .title {
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  padding: 20rpx 0;
+}
 input {
-  background-color: white;
-  padding: 16rpx 36rpx;
-  border-radius: 10rpx;
+  /* background-color: white; */
+  /* padding: 16rpx 36rpx; */
+  /* border-radius: 10rpx; */
   color: black;
   font-weight: lighter;
+  /* box-shadow: 1px 1px 5px rgba(0,0,0,0.1); */
 }
 .form-content {
   height:350rpx;
-  background-color: white;
+  /* background-color: white; */
   border-radius: 10rpx;
   margin-bottom: 0;
-}
-button {
-  color: #4A4A4A;
-  background: #FFFFFF;
-  border: 1px solid #4A4A4A;
-  padding: 8rpx 24rpx;
-  border-radius: 50rpx;
-  font-size: 32rpx;
+  /* box-shadow: 1px 1px 5px rgba(0,0,0,0.1); */
+  text-align: top;
   font-weight: lighter;
-  width: 200rpx;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-  margin: 0 auto;
-  margin-top: 30rpx;
+}
+
+.btn-photo {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: black;
+  border-style: dotted;
+  width: 100%; 
+  height: 400rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.upload-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-img-all {
+  margin-bottom: 120rpx;
+}
+
+.btnImg {
+  margin: 10rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.picker-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.picker {
+  margin: 10rpx;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border: 3rpx solid grey;
+  padding: 10rpx 50rpx;
+}
+.picker-img {
+  margin-right: 8rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.form {
+  margin-top:100rpx;
 }
