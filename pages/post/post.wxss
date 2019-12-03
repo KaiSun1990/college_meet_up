@@ -47,13 +47,17 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30rpx;
+  margin-bottom: 10rpx;
 }
 
 .upload-img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.upload-img-all {
+  margin-bottom: 120rpx;
 }
 
 .btnImg {
@@ -81,4 +85,8 @@ input {
   margin-right: 8rpx;
   width: 60rpx;
   height: 60rpx;
+}
+
+.form {
+  margin-top:100rpx;
 }
