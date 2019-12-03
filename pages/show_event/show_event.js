@@ -1,8 +1,7 @@
-// pages/show/show.js
+// pages/show_event/show_event.js
 Page({
 
   /**
-
    * Page initial data
    */
   data: {
@@ -29,22 +28,22 @@ Page({
     // this.setData({ disableBtn: true })
   },
 
-  getEvent(id) {
+getEvent(id) {
 
-    console.log("lauch get event")
-    let query = new wx.BaaS.Query()
-    let EventTable = new wx.BaaS.TableObject('event')
+  console.log("lauch get event")
+  let query = new wx.BaaS.Query()
+  let EventTable = new wx.BaaS.TableObject('event')
 
-    EventTable.get(id).then(res => {
-      console.log(res);
-      let event = res.data
-      this.setData({ event })
-      // success
-    }, err => {
-      console.log(err);
-      // err
-    })
-  },
+  EventTable.get(id).then(res => {
+    console.log(res);
+    let event = res.data
+    this.setData({event})
+    // success
+  }, err => {
+    console.log(err);
+    // err
+  })
+},
 
   saveEvent: function () {
     let tableName = "event"
@@ -54,12 +53,12 @@ Page({
     event.people_saved.push({ user_id: this.user.id })
     event.update().then(page.getRequestData)
   },
-
+  
   getUserInfo: function () {
 
   },
-
-
+  
+  
   onLoad: function (options) {
     let id = options.id // needs to be changed after linking it to index!!!!
     console.log(id)
@@ -84,7 +83,6 @@ Page({
   },
 
   /**
-
    * Lifecycle function--Called when page show
    */
   onShow: function () {
@@ -92,16 +90,13 @@ Page({
   },
 
   /**
-
    * Lifecycle function--Called when page hide
-
    */
   onHide: function () {
 
   },
 
   /**
-
    * Lifecycle function--Called when page unload
    */
   onUnload: function () {
@@ -110,25 +105,20 @@ Page({
 
   /**
    * Page event handler function--Called when user drop down
-
    */
   onPullDownRefresh: function () {
 
   },
 
   /**
-
    * Called when page reach bottom
-
    */
   onReachBottom: function () {
 
   },
 
   /**
-
    * Called when user click on the top right corner to share
-
    */
   onShareAppMessage: function () {
 
