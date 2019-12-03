@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "FilterBar",
+  "navigationBarTitleText": "Home",
   "usingComponents": {
     "wux-button": "../../dist/button/index"
   }

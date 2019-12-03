@@ -25,22 +25,19 @@
       "selectedIconPath": "/image/explore.png"
     },
     {
-      "pagePath": "pages/home/home",
+      "pagePath": "pages/post/post",
       "text": "Create",
       "iconPath": "/image/create.png",
       "selectedIconPath": "/image/create.png"
     },
     {
-      "pagePath": "pages/home/home",
+      "pagePath": "pages/user/user",
       "text": "Profile",
       "iconPath": "/image/profile.png",
       "selectedIconPath": "/image/profile.png"
     }
   ]
 },
-
-
-
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "plugins": {
