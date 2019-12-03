@@ -1,0 +1,48 @@
+<!--pages/show/show.wxml-->
+<view class="container">
+  <view class="banner-card">
+    <view class="top-section">
+      <image  class = "avatar" mode = "aspectFill" src = "../../image/avatar.jpg" />
+      <view class="h1">Happy Coding Hour</view>
+    </view>
+    <image class="img" src="../../image/cocktails.jpg"></image>
+
+    <view class="mid-section">
+      <view class="info">
+        <image class='picker-img' src='../../image/日期.png'></image>
+        <text>2019年12月10日</text>
+      </view>
+      <view class="info">
+        <image class='picker-img' src='../../image/时间.png'></image>
+        <text>14:00</text>
+      </view>
+      <view class="info">
+        <image class='picker-img' src='../../image/地点.png'></image>
+        <text>深圳市软件产业基地4栋B座裙楼1楼One Piece Work</text>
+      </view>
+    </view>
+    <view class="bottom-section">
+      <view class="info">
+        <view class="content-title">活动内容</view>
+        <text class="event-content">Free drinks for coders only</text>
+      </view>
+    </view>
+
+  </view> 
+</view>
+
+<view class="footer">
+    <view class="icon-card">
+      <image class="icon" src="../../image/主页.png"></image>
+      <text>主页</text>
+    </view>
+    <view class="icon-card">
+      <image class="icon" src="../../image/想看.png"></image>
+      <text>收藏</text>
+    </view>
+    <view class="icon-card">
+      <image class="icon" src="../../image/分享.png"></image>
+      <text>分享</text>
+    </view>
+  <button class="sign-up" type="primary">我要参加</button>
+</view>

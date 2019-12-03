@@ -74,6 +74,12 @@
 					"pathName": "pages/post/post",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "event show ",
+					"pathName": "pages/show/show",
+					"scene": null
 				}
 			]
 		}

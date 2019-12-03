@@ -7,7 +7,8 @@
     "pages/create/create",
     "pages/filter/filter",
     "pages/edit_profile/edit_profile",
-    "pages/post/post"
+    "pages/post/post",
+    "pages/show/show"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -38,6 +39,8 @@
     }
   ]
 },
+
+
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "plugins": {

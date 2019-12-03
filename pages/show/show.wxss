@@ -1,0 +1,111 @@
+/* pages/show/show.wxss */
+/* page {
+  height: 100vh;
+  background-color: rgb(234, 234, 234);
+} */
+
+.container {
+  height: 100%;
+  overflow: scroll;
+  padding-top: 0rpx;
+  padding-bottom: 150rpx;
+}
+
+.top-section {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: white;
+  padding: 20rpx;
+  margin-top: 0rpx;
+}
+
+.top-section .avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin: 10rpx;
+}
+
+.top-section .h1 {
+  font-style: bold;
+  font-size: 60rpx;
+  text-align: center;
+}
+
+image {
+  display: block;
+}
+
+
+.mid-section {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  padding: 20rpx;
+  flex-direction: column;
+  background-color: white;
+  margin: 0rpx;
+  border-bottom: 1rpx solid grey;
+}
+
+.mid-section .info {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.picker-img {
+  margin-right: 8rpx;
+  width: 60rpx;
+  height: 60rpx;
+  flex-shrink: 0;
+}
+
+.bottom-section {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  padding: 20rpx;
+  flex-direction: column;
+  background-color: white;
+  margin: 0rpx;
+}
+
+.bottom-section .content-title {
+  margin-bottom: 20rpx;
+}
+
+.bottom-section .event-content {
+  text-align: left;
+}
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  height: 120rpx;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer button {
+  margin: 0rpx;
+}
+
+.icon-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.icon-card .icon {
+  margin: 5rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
