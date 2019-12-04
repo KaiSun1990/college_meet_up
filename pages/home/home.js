@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    events: [],
     cardCur: 0,
     swiperList: [{
       id: 0,
@@ -23,6 +24,42 @@ Page({
     }],
 
   },
+
+  getEvents: function () {
+    let query = new wx.BaaS.Query()
+    let Event = new wx.BaaS.TableObject('event')
+    query.compare('created_at', '>', 0)
+
+    Event.setQuery(query).orderBy('date').find()
+      .then(res => {
+        let data = res.data.objects
+        let dates_array = []
+        data.forEach((item) => {
+          let event = this.setDisplayDate(item)
+          dates_array.push(event)
+        })
+        this.setData({events: dates_array})
+      })
+  },
+
+  navigateToShow(e) {
+    let type = e.currentTarget.dataset.type
+    let id = e.currentTarget.dataset.id
+    console.log(e)
+    wx.navigateTo({
+      url: `/pages/show/show`
+    })
+  },
+
+  setDisplayDate: function(event) {
+    let date = new Date(event.date)
+    const date_array = date.toLocaleString().split(', ')
+    event.display_day = date_array[0]
+    event.display_time = date_array[1]
+    return event
+  // 1. create date object. 2. create local string from date object. 3. parse array. 4. take first indecies of array and set to event.display.date 5. set all events to local data 
+  },
+
 
   loginWithWechat: function () {
     wx.BaaS.auth.loginWithWechat().then(user => {
@@ -52,6 +89,7 @@ Page({
    */
   onLoad: function (options) {
     this.getCurrentUser();
+    this.getEvents();
   },
 
   /**
