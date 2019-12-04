@@ -18,6 +18,10 @@
   <view class = "event_filter">
   placeholder-filter
   </view> -->
+  <!-- button wx:if="{{!user.nickname}}" open-type="getUserInfo" bindgetuserinfo="loginWithWechat"> Login into your Wechat </button-->
+  <wux-button wx:if="{{!user.nickname}}" class="login-btn" block type="balanced" open-type="getUserInfo" bindgetuserinfo="loginWithWechat">Login into your Wechat for full functionalities</wux-button>
+    <block wx:else>
+    </block>
   <view class = "events">
     <view class = "event_title">Le Wagon activities</view>
     <view class = "event_card">
