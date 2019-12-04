@@ -1,0 +1,81 @@
+.event-card {
+  width: 98vw;
+  margin: 10rpx 0;
+  height: 260rpx;
+  background-color: #FAFAFA;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: top;
+  overflow: hidden;
+}
+
+.event-card .event-img {
+  width: 260rpx;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.event-card .card-left {
+  height: 255rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-left .avatar-sm {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.card-left .save-icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+  height: 100%;
+  padding: 0rpx 20rpx;
+}
+
+.event-info .info-1 {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.event-info .info-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.event-info .info-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.info-2 .date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-2 .time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-3 .location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
