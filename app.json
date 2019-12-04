@@ -1,14 +1,13 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/user/user",
     "pages/home/home",
     "pages/create/create",
     "pages/filter/filter",
     "pages/edit_profile/edit_profile",
     "pages/post/post",
-    "pages/show/show"
+    "pages/show/show",
+    "pages/profile/profile"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,19 +20,19 @@
   "list": [
     {
       "pagePath": "pages/home/home",
-      "text": "Explore",
-      "iconPath": "/image/explore.png",
-      "selectedIconPath": "/image/explore.png"
+      "text": "主页",
+      "iconPath": "/image/主页.png",
+      "selectedIconPath": "/image/主页.png"
     },
     {
       "pagePath": "pages/post/post",
-      "text": "Create",
+      "text": "",
       "iconPath": "/image/create.png",
       "selectedIconPath": "/image/create.png"
     },
     {
-      "pagePath": "pages/user/user",
-      "text": "Profile",
+      "pagePath": "pages/profile/profile",
+      "text": "我的",
       "iconPath": "/image/profile.png",
       "selectedIconPath": "/image/profile.png"
     }

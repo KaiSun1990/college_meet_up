@@ -1,0 +1,179 @@
+/* pages/profile/profile.wxss */
+.header {
+  width: 100%;
+  height: 260rpx;
+  top: 0px;
+  background-color: #FAFAFA;
+  border-bottom: 6rpx solid #cfcfcf;
+  display: flex;
+  align-items: center;
+}
+
+
+.header .avatar {
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  margin: 0 20rpx;
+}
+
+.header .user-info {
+  width: 380rpx;
+  overflow: hidden;
+}
+
+.user-info .user-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  height: 50rpx;
+}
+
+.user-info .user-bio {
+  font-size: 28rpx;
+  font-weight: lighter;
+  height: 50rpx;
+}
+
+.user-info .follows{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.follows .going {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.follows .went {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.follows .saved {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.header .edit-icon {
+  width: 40rpx;
+  height: 36.2rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+}
+
+.lib-bar{
+  width: 100%;
+  height: 100rpx;
+  background-color: #FAFAFA;
+  display: flex;
+  align-items: center;
+}
+
+.lib-bar .my-signup {
+  width: 50%;
+  text-align: center;
+  border-right: 3rpx solid #cfcfcf;
+}
+
+.lib-bar .my-save {
+  width: 50%;
+  text-align: center;
+}
+
+.profile_event_container {
+  background-color: #cfcfcf;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-card {
+  width: 98vw;
+  margin: 10rpx 0;
+  height: 260rpx;
+  background-color: #FAFAFA;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: top;
+  overflow: hidden;
+}
+
+.event-card .event-img {
+  width: 260rpx;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.event-card .card-left {
+  height: 255rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-left .avatar-sm {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.card-left .save-icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+  height: 100%;
+  padding: 0rpx 20rpx;
+}
+
+.event-info .info-1 {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.event-info .info-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.event-info .info-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.info-2 .date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-2 .time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-3 .location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -79,6 +79,13 @@
 					"id": -1,
 					"name": "event show ",
 					"pathName": "pages/show/show",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Profile",
+					"pathName": "pages/profile/profile",
 					"scene": null
 				}
 			]
