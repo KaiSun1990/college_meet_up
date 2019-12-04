@@ -44,5 +44,5 @@
       <image class="icon" src="../../image/分享.png"></image>
       <text>分享</text>
     </view>
-  <button class="sign-up" type="primary">我要参加</button>
+  <button class="sign-up" type="primary" bindtap="attendEvent">我要参加</button>
 </view>
