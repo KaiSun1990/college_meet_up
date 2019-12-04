@@ -2,9 +2,7 @@
 
 .page {
   background-color: rgb(15,15,15);
-
 }
-
 
 .form-container {
   height: 100%;
@@ -101,4 +99,8 @@ input {
 .submit-btn {
 
   margin-bottom: 30rpx;
+}
+
+.location-btn {
+
 }

@@ -6,9 +6,12 @@ Page({
       time: undefined,
       date: undefined,
       description: undefined,
-      image: undefined
+      image: undefined,
+      address: undefined,
+      latitude: undefined,
+      longitude: undefined
     },
-    dateNow: undefined
+    dateNow: undefined,
   },
 
 dateToday: function () {
@@ -86,7 +89,9 @@ uploadImage: function () {
 
     let newEvent = {
       name: this.data.event.name,
-      location: this.data.event.location,
+      address: this.data.event.address,
+      longitude: this.data.event.longitude,
+      latitude: this.data.event.latitude,
       date: this.data.event.date.concat(" ", this.data.event.time),
       description: this.data.event.description,
       image: this.data.event.image
@@ -109,14 +114,16 @@ uploadImage: function () {
   },
 
 
-  getLocation: function () {
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
+  getMapLocation: function () {
+    let page = this
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res)
+        page.setData ({
+          "event.address": res.address,
+          "event.latitude": res.latitude,
+          "event.longitude": res.longitude
+        })
       }
     })
   },
