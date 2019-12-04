@@ -5,9 +5,8 @@
  <view class="upload-img-all" wx:if="{{!event.image}}">
     <view class="upload-img" >
       <image class='btnImg' src='../../image/上传照片.png'></image>
-      <view>上传封面</view>
+      <view>Upload Cover Page</view>
     </view>
-    <view>高质量的封面图能带来更多浏览哦</view>
   </view>
  </image>
 
@@ -16,28 +15,30 @@
   <picker mode="date" value="{{date}}" start="{{ dateNow }}" end="2020-09-01" bindchange="bindDateChange">
     <view class="picker">
       <image class='picker-img' src='../../image/日期.png'></image>
-      <text>{{event.date || '日期'}}</text>
+      <text>{{event.date || 'Date'}}</text>
     </view>
   </picker>
 
   <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
     <view class="picker" >
       <image class='picker-img' src='../../image/时间.png'></image>
-      <text>{{event.time || '时间'}}</text>
+      <text>{{event.time || 'Time'}}</text>
     </view>
   </picker>
 </view>
 <view>
-  <button bindtap="getLocation">点击获取当前位置</button>
+  <button class = "location-btn" bindtap="getMapLocation">
+  <text>{{event.address ||"Click here to choose location"}}</text>
+  </button>
 </view>
 
   <form class="form">
     <view class="section">
-      <input class="title" value="{{name}}" placeholder="为你的活动写个标题吧" data-type="name" bindinput = "onChangeName"></input>
+      <input class="title" value="{{name}}" placeholder="Add a title for your event" data-type="name" bindinput = "onChangeName"></input>
     </view>
     <view class="section">
       <view class="form-content">
-        <textarea class="content" value="{{description}}" placeholder="为你的活动写点什么" data-type="content" bindinput = "onChangeContent"></textarea>
+        <textarea class="content" value="{{description}}" placeholder="Add a description for your event" data-type="content" bindinput = "onChangeContent"></textarea>
       </view>
     </view>
 

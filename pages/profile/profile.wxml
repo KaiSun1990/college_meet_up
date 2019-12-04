@@ -1,0 +1,59 @@
+<!--pages/profile/profile.wxml-->
+<view class="header">
+    <image  class= "avatar" mode = "aspectFill" src = "../../image/avatar.jpg" />
+    <view class="user-info">
+      <view class="user-name">高米米Mimi Gao</view>
+      <view class="user-bio">Step out of your comfort zone</view>
+      <view class="follows">
+        <view class="going">
+          <text>3</text>
+          <text>待参加</text>
+        </view>
+        <view class="went">
+          <text>1</text>
+          <text>已参加</text>
+        </view>
+        <view class="saved">
+          <text>10</text>
+          <text>收藏</text>
+        </view>
+      </view>
+    </view>
+    <view class="edit-icon">
+      <image class="edit-icon" bindtap="navigateToEditProfile" src="../../image/编辑.png"></image>
+    </view>
+
+</view>
+
+<view class="lib-bar">
+  <view class="my-signup">
+    <text>参加</text>
+  </view>
+  <view class="my-save">
+    <text>收藏</text>
+  </view>
+</view>
+
+<view class="profile_event_container">
+  <view class="event-card">
+    <image  class= "event-img" mode = "aspectFill" src = "../../image/cocktails.jpg" />
+    <view class="event-info">
+      <view class="info-1">Free Codes Tasting</view>
+      <view class="info-2">
+        <view class="date">
+          <text class="date-content">2019年12月4日</text>
+        </view>
+        <view class="time">
+          <text class="time-content">18:00</text>
+        </view>
+      </view>
+      <view class="info-3">
+        <view class="location">深圳市软件产业基地4栋B座裙楼1楼One Piece Work</view>
+      </view>
+    </view>
+    <view class="card-left">
+      <image  class= "save-icon" mode = "aspectFill" src = "../../image/想看.png" />     
+      <image  class= "avatar-sm" mode = "aspectFill" src = "../../image/avatar.jpg" />
+    </view>
+  </view>
+</view>
