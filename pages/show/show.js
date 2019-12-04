@@ -18,7 +18,11 @@ Page({
     let people_going = event.people_going
     console.log(people_going)
     people_going = people_going == null ? "0" : people_going;
+    console.log(people_going)
     people_going += 1
+    console.log(typeof people_going)
+    people_going = Number.parseInt(people_going)
+    console.log(typeof people_going)
     console.log(people_going)
     event.set("people_going", people_going)
     event.update().then(res => {
