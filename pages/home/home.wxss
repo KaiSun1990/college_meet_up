@@ -93,6 +93,4 @@ position: absolute;
 bottom: 130rpx;
 right: 15rpx;
 font-weight: lighter;
-
 }
-

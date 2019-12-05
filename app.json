@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/create/create",
     "pages/filter/filter",
     "pages/edit_profile/edit_profile",
     "pages/post/post",
