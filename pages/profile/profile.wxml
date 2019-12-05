@@ -1,9 +1,11 @@
 <!--pages/profile/profile.wxml-->
 <view class="header">
-    <image  class= "avatar" mode = "aspectFill" src = "../../image/avatar.jpg" />
+    <image  class= "avatar" mode = "aspectFill" src = "{{user.avatar}}" />
     <view class="user-info">
-      <view class="user-name">{{user.nickname}}</view>
-      <view class="user-bio">{{users[0].bio}}</view>
+
+      <view class="user-name">{{user.custom_nickname || user.nickname}}</view>
+      <view class="user-bio">{{user.bio || "Please add your first bio"}}</view>
+
       <view class="follows">
         <view class="going">
           <text>3</text>
