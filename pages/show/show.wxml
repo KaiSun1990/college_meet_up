@@ -43,13 +43,11 @@
     <view wx:else class="icon-card" bindtap="saveUserEvent">
       <image class="icon" src="../../image/想看.png"></image>
       <text>收藏</text>
-    </view> -->
-
-
-
+    </view>
     <!-- <view class="icon-card">
       <image class="icon" src="../../image/分享.png"></image>
       <text>分享</text>
     </view> -->
-  <button class="sign-up" disabled="{{disableAttendBtn}}" type="primary" bindtap="attendEvent">我要参加</button>
+
+  <button class="sign-up" disabled="{{disableBtn}}" type="primary" bindtap="attendEvent">我要参加</button>
 </view>

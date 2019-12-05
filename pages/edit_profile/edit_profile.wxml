@@ -1,31 +1,17 @@
-<!--pages/edit_profile/edit_profile.wxml-->
-<view class="profile-container">
-  <image class="avatar-large" alt="avatar-large"        src="{{user.avatar}}" />
-  <view class="profile-details">  
-    <view class="h1">{{user.nickname}}</view>
-    <view>{{user.city}}</view>
-    <view>{{user.province}}</view>
-    <view class="biotext">{{users[0].bio}}</view>
+<view class="page__container">
+  <view class="form-flexbox">
+    <view class="title">昵称</view>
+    <input class="input" placeholder="{{users[0].user_name}}"></input>
   </view>
-</view>
 
-<view class="form-container">
-  <form bindsubmit="formSubmit">
-    <view class="section">
-      <view>Nickname</view>
-      <input name="user_name" placeholder="{{users[0].user_name}}"></input>
-    </view>
-    <view class="section">
-      <view>City</view>
-      <input name="city" placeholder="{{users[0].city}}"></input>
-    </view>
-    <view class="section">
-      <view>Bio</view>
-      <view class="form-content">
-        <textarea class="bio" placeholder="{{users[0].bio}}"></textarea>
-      </view>
-      <button form-type="submit">Submit</button>
-    </view>
-    
-  </form>
+  <view class="form-flexbox">
+    <view class="title">城市</view>
+    <input class="input" placeholder="{{users[0].city}}"></input>
+  </view>
+
+  <view class="form-flexbox">
+    <view class="title">个性签名</view>
+    <input class="input" placeholder="{{users[0].bio}}"></input>
+  </view>
+  <button type="primary">保存</button>
 </view>

@@ -28,15 +28,14 @@
 
 .event_card {
   overflow: hidden;
-  height: 200rpx;
+  width: 100vw;
+  height: 18vh;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15rpx rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  margin-bottom: 15rpx;
+  /* margin-bottom: 15rpx; */
   position:relative;
-  margin-left: 25rpx;
-  margin-right: 25rpx;
 }
 
 .event_card .event_img {
@@ -46,13 +45,14 @@
 }
 
 .event_card .avatar {
-  width: 98rpx;
-  height: 98rpx;
+  width: 60rpx;
+  height: 60rpx;
   margin: 20rpx;
   border-radius: 50%;
   position:absolute;
   bottom:-10rpx;
-  right:15rpx;
+  right:10rpx;
+
 }
 
 
@@ -76,10 +76,14 @@
 }
 
 .events .event_title {
-  font-size: 52rpx;
+  font-size: 36rpx;
   font-weight: bold;
-  margin: 5rpx;
+  text-align: center;
+  color: black;
+  text-shadow: 0 0 3rpx #cfcfcf;
   padding: 10rpx; 
+  border: 3rpx solid #cfcfcf;
+  width: 100vw;
 }
 
 .button_save {
