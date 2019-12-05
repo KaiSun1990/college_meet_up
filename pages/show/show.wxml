@@ -1,5 +1,5 @@
 <!--pages/show/show.wxml-->
-<view class="container">
+<view class="page__container">
   <view class="banner-card">
     <view class="top-section">
       <image  class = "avatar" mode = "aspectFill" src = "{{ event.creator_avatar }}" />

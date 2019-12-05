@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "Home",
+  "navigationBarTitleText": "主页",
   "usingComponents": {
     "wux-button": "../../dist/button/index"
   }

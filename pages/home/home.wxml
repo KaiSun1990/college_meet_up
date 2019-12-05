@@ -17,18 +17,18 @@
   placeholder-filter
   </view> -->
   <!-- button wx:if="{{!user.nickname}}" open-type="getUserInfo" bindgetuserinfo="loginWithWechat"> Login into your Wechat </button-->
-  <wux-button wx:if="{{!user.nickname}}" class="login-btn" block type="balanced" open-type="getUserInfo" bindgetuserinfo="loginWithWechat">Login into your Wechat for full functionalities</wux-button>
+  <button wx:if="{{!user.id}}" class="login-btn" style="width: 90vw; margin: 20rpx auto;" block type="balanced" open-type="getUserInfo" bindgetuserinfo="loginWithWechat">点击授权</button>
     <block wx:else>
     </block>
   <view class = "events">
-    <view class = "event_title">Upcoming Activities</view>
+    <view class = "event_title">精彩活动</view>
     <view wx:for="{{events}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>
       <view class = "event_card">
         <image class = "event_img" mode = "aspectFill" src="{{item.image}}" />
         <view class="event_card-infos">
           <view class = "h2">{{item.name}}</view>
           <view class = "p">{{item.display_day}} {{item.display_time}}</view>
-          <view class = "p">{{item.people_going}} people are going</view>
+          <view class = "p">{{item.people_going}} 人已报名</view>
         </view>
         <image  class = "avatar" mode = "aspectFill" src = "{{item.creator_avatar}}" />
         <!-- <image class = "button_save" src = "../../image/save.png" /> -->
