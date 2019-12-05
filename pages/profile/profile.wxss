@@ -103,6 +103,7 @@
   background-color: #FAFAFA;
   border-radius: 10rpx;
   display: flex;
+  justify-content: space-between;
   align-items: top;
   overflow: hidden;
 }
