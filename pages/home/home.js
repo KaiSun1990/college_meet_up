@@ -47,7 +47,7 @@ Page({
     let id = e.currentTarget.dataset.id
     console.log(e)
     wx.navigateTo({
-      url: `/pages/show/show`
+      url: `/pages/show/show?id=${id}`
     })
   },
 

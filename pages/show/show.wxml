@@ -2,29 +2,29 @@
 <view class="container">
   <view class="banner-card">
     <view class="top-section">
-      <image  class = "avatar" mode = "aspectFill" src = "../../image/avatar.jpg" />
-      <view class="h1">Happy Coding Hour</view>
+      <image  class = "avatar" mode = "aspectFill" src = "{{ event.creator_avatar }}" />
+      <view class="h1">{{ event.name }}</view>
     </view>
-    <image class="img" src="../../image/cocktails.jpg"></image>
+    <image class="img" src="{{ event.image }}"></image>
 
     <view class="mid-section">
       <view class="info">
         <image class='picker-img' src='../../image/日期.png'></image>
-        <text>2019年12月10日</text>
+        <text>{{ event.display_day }}</text>
       </view>
       <view class="info">
         <image class='picker-img' src='../../image/时间.png'></image>
-        <text>14:00</text>
+        <text>{{ event.display_time }}</text>
       </view>
       <view class="info">
         <image class='picker-img' src='../../image/地点.png'></image>
-        <text>深圳市软件产业基地4栋B座裙楼1楼One Piece Work</text>
+        <text>{{ event.address }}</text>
       </view>
     </view>
     <view class="bottom-section">
       <view class="info">
-        <view class="content-title">活动内容</view>
-        <text class="event-content">Free drinks for coders only</text>
+        <view class="content-title">{{ event.name }}</view>
+        <text class="event-content">{{ event.description }}</text>
       </view>
     </view>
 
@@ -44,5 +44,5 @@
       <image class="icon" src="../../image/分享.png"></image>
       <text>分享</text>
     </view>
-  <button class="sign-up" type="primary" bindtap="attendEvent">我要参加</button>
+  <button class="sign-up" disabled="{{disableBtn}}" type="primary" bindtap="attendEvent">我要参加</button>
 </view>

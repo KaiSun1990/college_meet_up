@@ -76,16 +76,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "event show ",
 					"pathName": "pages/show/show",
-					"query": "",
+					"query": "id=5de7b95723277b653cb173d8, name=blub",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "Profile",
 					"pathName": "pages/profile/profile",
+					"query": "",
 					"scene": null
 				}
 			]
