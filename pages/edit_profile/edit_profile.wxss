@@ -1,62 +1,31 @@
-@import '../../dist/styles/index.wxss';
-.avatar-large {
-  width: 240rpx;
-  height: 240rpx;
-  border-radius: 50%;
-}
-
-.h1 {
-  font-weight: bold;
-  font-size: 40rpx;
-  margin-bottom: 10rpx;
-}
-
-.biotext {
-  font-weight: 300;
-  font-style: italic;
-  font-size: 32rpx;
-}
-
-.profile-container {
+.page__container {
+  width: 100vw;
   display: flex;
-  background-color: rgb(240, 240, 240);
-  height: 350rpx;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
+  background: #fafafa;
+  min-height: 100vh;
 }
 
-.profile-details {
-  height: 160rpx;
-  width: 300rpx;
+.form-flexbox {
+  height: 100rpx;
+  width: 95%;
+  margin: 20rpx 0;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:white;
+  font-weight: lighter;
+  padding: 0 20rpx;
+  box-sizing: border-box;
 }
 
-.form-container {
-  margin: 30rpx 50 rpx;
-  padding: 50rpx;
-  background-color: aliceblue;
+.input {
+  text-align: right;
+  width: 70%;
 }
 
-.form-content {
-  height: 250rpx;
-  background-color: white;
-  text-align: top;
+.title {
+  width: 30%;
 }
-
-.section {
-  margin-top: 14rpx;
-}
-
-input {
-  background-color: white;
-  padding: 20rpx;
-}
-
-textarea {
-  padding: 20rpx;
-  width: 500rpx;
-}
-
-button {
-  margin-top: 30rpx;
-}
-

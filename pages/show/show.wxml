@@ -40,9 +40,9 @@
       <image class="icon" src="../../image/想看.png"></image>
       <text>收藏</text>
     </view>
-    <view class="icon-card">
+    <!-- <view class="icon-card">
       <image class="icon" src="../../image/分享.png"></image>
       <text>分享</text>
-    </view>
+    </view> -->
   <button class="sign-up" disabled="{{disableBtn}}" type="primary" bindtap="attendEvent">我要参加</button>
 </view>

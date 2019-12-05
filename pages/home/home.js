@@ -12,15 +12,15 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2516586920,128826406&fm=26&gp=0.jpg'
+      url: 'https://cn.bing.com/th?id=OIP.7gWe7BgHfE50dH7gSR1w4gHaE1&pid=Api&rs=1'
     }, {
       id: 1,
       type: 'image',
-        url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575414783789&di=26cf9bc4dc68c3357b59967a78cecb20&imgtype=0&src=http%3A%2F%2Fimg02.taopic.com%2F190128%2F234820-1Z12QJ14274.jpg',
+        url: 'https://cn.bing.com/th?id=OIP.MFZnOQcMxUfNcF-oR-Oo2AHaD4&pid=Api&rs=1',
     }, {
       id: 2,
       type: 'image',
-        url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575417036716&di=df91d774c78216e108c9a9721ed6d2a8&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F30442067bbd3f478e8eab9c5927faa7faac4da204dcfd-VYVBxs_fw658'
+        url: 'https://www.desicomments.com/wp-content/uploads/2018/10/Weekend-Loading.jpg'
     }],
 
   },
