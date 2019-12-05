@@ -43,6 +43,14 @@ Page({
       })
   },
 
+  navigateToShow(e) {
+    let type = e.currentTarget.dataset.type
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/show/show?id=${id}`
+    })
+  },
+
   navigateToEditProfile: function () {
     wx.navigateTo({
       url: '/pages/edit_profile/edit_profile'
