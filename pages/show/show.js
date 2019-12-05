@@ -8,17 +8,17 @@ Page({
   data: {
   },
 
-  getUserEvent: function() {
+  getUserEvent: function(event_id, user_id) {
     console.log("fetching user_event....")
     let query = new wx.BaaS.Query()
     let UserEvent = new wx.BaaS.TableObject('user_event')
 
-    query.compare('event_id', '=', this.data.event.id)
-    query.compare('user_id', '=', this.data.user.id)
+    query.compare('event_id', '=', event_id)
+    query.compare('user_id', '=', user_id)
     console.log("ready for query...")
-    UserEvent.setQuery(query).expand(['event_id', 'user_id']).find().then(res => {
-      console.log(res.data.objects[0])
-      let user_event = res.data.objects[0];
+    UserEvent.setQuery(query).find().then(res => {
+      console.log(res)
+      let user_event = res;
       console.log('userEvent fetched')
       this.setData ( {user_event} )
       if ((user_event.going === true)) {
@@ -60,9 +60,16 @@ Page({
     })
 
     this.setData({ disableAttendBtn: true })
-    wx.reLaunch({
-      url: `/pages/show/show?id=${this.data.event.id}`
+
+    wx.showToast({
+      title: `已成功报名！`,
+      icon: 'success'
     })
+    wx.reLaunch({
+      url: `/ pages / show / show ? id = ${ this.data.event.id }`
+    })
+
+    
   },
 
   unsaveUserEvent: function () {
@@ -153,19 +160,19 @@ Page({
     return event
   },
 
-
   onLoad: function (options) {
     console.log(options)
-    let id = options.id // needs to be changed after linking it to index!!!!
+    let event_id = options.id // needs to be changed after linking it to index!!!!
     console.log("show options id")
-    console.log(id)
-    this.getEvent(id)
+    console.log(event_id)
+    this.getEvent(event_id)
     // console.log(options)
     wx.BaaS.auth.getCurrentUser().then(user => {
       // user 为 currentUser 
       this.setData({ user })
       console.log("ready to get user_event")
-      this.getUserEvent()
+      let user_id = this.data.user.id
+      this.getUserEvent(event_id, user_id)
     }).catch(err => {
       // HError
       if (err.code === 604) {
