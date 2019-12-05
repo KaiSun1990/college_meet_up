@@ -49,5 +49,5 @@
       <text>分享</text>
     </view> -->
 
-  <button class="sign-up" disabled="{{disableBtn}}" type="primary" bindtap="attendEvent">我要参加</button>
+  <button class="sign-up" disabled="{{disableAttendBtn}}" type="primary" bindtap="attendEvent">我要参加</button>
 </view>
