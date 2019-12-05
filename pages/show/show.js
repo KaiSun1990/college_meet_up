@@ -6,46 +6,55 @@ Page({
    * Page initial data
    */
   data: {
+    disableBtn: false
   },
 
   attendEvent: function () {
-    let recordID = this.data.event.id
-    console.log(recordID)
-    let tableName = 'event'
-    let Event = new wx.BaaS.TableObject(tableName)
-    let event = Event.getWithoutData(recordID)
-    console.log(event)
+    let event = this.data.event
     let people_going = event.people_going
-    console.log(people_going)
-    people_going = people_going == null ? "0" : people_going;
-    console.log(people_going)
+    // console.log(people_going)
+    people_going = people_going === null ? "0" : people_going;
+    // console.log(people_going)
     people_going += 1
-    console.log(typeof people_going)
+    // console.log(typeof people_going)
     people_going = Number.parseInt(people_going)
-    console.log(typeof people_going)
-    console.log(people_going)
-    event.set("people_going", people_going)
-    event.update().then(res => {
-
+    // console.log(typeof people_going)
+    // console.log(people_going)
+    
+    let Event = new wx.BaaS.TableObject('event')
+    let db_event = Event.getWithoutData(event.id)
+    db_event.set("people_going", people_going)
+    db_event.update().then(res => {
+      console.log(res);
     }, err => {
-
     })
-    // this.setData({ disableBtn: true })
+
+    let User_event = new wx.BaaS.TableObject('user_event')
+    let user_event = User_event.create()
+    let new_user_event = {
+      user_id: this.data.user.id,
+      event_id: this.data.event.id,
+      going: true
+    }
+    user_event.set(new_user_event).save().then(res => {
+      console.log(res)
+    }, err => {
+    })
+
+    this.setData({ disableBtn: true })
   },
 
   getEvent(id) {
-
     console.log("lauch get event")
-    let query = new wx.BaaS.Query()
-    let EventTable = new wx.BaaS.TableObject('event')
-
-    EventTable.get(id).then(res => {
+    let Event = new wx.BaaS.TableObject('event')
+    Event.get(id).then(res => {
       console.log(res);
-      let event = res.data
+      let event = res.data;
+      event = this.setDisplayDate(event)
+      console.log(event);
       this.setData({ event })
       // success
     }, err => {
-      console.log(err);
       // err
     })
   },
@@ -63,9 +72,19 @@ Page({
 
   },
 
+  setDisplayDate: function (event) {
+    let date = new Date(event.date)
+    const date_array = date.toLocaleString().split(', ')
+    event.display_day = date_array[0]
+    event.display_time = date_array[1]
+    return event
+  },
+
 
   onLoad: function (options) {
+    console.log(options)
     let id = options.id // needs to be changed after linking it to index!!!!
+    console.log("show options id")
     console.log(id)
     this.getEvent(id)
     // console.log(options)
