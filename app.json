@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/user/user",
     "pages/home/home",
     "pages/create/create",
     "pages/filter/filter",
@@ -53,5 +52,7 @@
     "scope.userLocation": {
       "desc": "Grant access for location service"
     }
-  }  
-}
+  }}
+  
+
+
