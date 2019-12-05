@@ -9,7 +9,7 @@ App({
       wx.requestPayment)
 
     let clientID = '265ecc6dd1f231150016'  // 应用名称: CityTales
-    wx.BaaS.init(clientID)
+    wx.BaaS.init(clientID, {autoLogin: true})
   },
   globalData: {
     userInfo: null
