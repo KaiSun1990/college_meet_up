@@ -1,9 +1,9 @@
 <!--pages/profile/profile.wxml-->
 <view class="header">
-    <image  class= "avatar" mode = "aspectFill" src = "../../image/avatar.jpg" />
+    <image  class= "avatar" mode = "aspectFill" src = "{{user.avatar}}" />
     <view class="user-info">
-      <view class="user-name">高米米Mimi Gao</view>
-      <view class="user-bio">Step out of your comfort zone</view>
+      <view class="user-name">{{user.custom_nickname || user.nickname}}</view>
+      <view class="user-bio">{{user.bio || "Please add your first bio"}}</view>
       <view class="follows">
         <view class="going">
           <text>3</text>
@@ -27,10 +27,10 @@
 
 <view class="lib-bar">
   <view class="my-signup">
-    <text>参加</text>
+    <text>我的报名</text>
   </view>
   <view class="my-save">
-    <text>收藏</text>
+    <text>我的收藏</text>
   </view>
 </view>
 
@@ -52,7 +52,8 @@
       </view>
     </view>
     <view class="card-left">
-      <image  class= "save-icon" mode = "aspectFill" src = "../../image/想看.png" />     
+      <!-- <image  class= "save-icon" mode = "aspectFill" src = "../../image/更多.png" />      -->
+      <view class="status-sign">已报名</view>
       <image  class= "avatar-sm" mode = "aspectFill" src = "../../image/avatar.jpg" />
     </view>
   </view>
