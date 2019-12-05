@@ -23,7 +23,7 @@
     </view>
     <view class="bottom-section">
       <view class="info">
-        <view class="content-title">{{ event.name }}</view>
+        <!-- <view class="content-title">{{ event.name }}</view> -->
         <text class="event-content">{{ event.description }}</text>
       </view>
     </view>
@@ -32,11 +32,15 @@
 </view>
 
 <view class="footer">
-    <view class="icon-card">
+    <view class="icon-card" bindtap="navigateToHome">
       <image class="icon" src="../../image/主页.png"></image>
       <text>主页</text>
     </view>
-    <view class="icon-card">
+    <!-- <view wx:if="{{user_event.saved}}" class="icon-card" bindtap="unsaveUserEvent">
+      <image class="icon" src="../../image/已想看.png"></image>
+      <text>取消收藏</text>
+    </view>
+    <view wx:else class="icon-card" bindtap="saveUserEvent">
       <image class="icon" src="../../image/想看.png"></image>
       <text>收藏</text>
     </view>
@@ -44,5 +48,6 @@
       <image class="icon" src="../../image/分享.png"></image>
       <text>分享</text>
     </view> -->
+
   <button class="sign-up" disabled="{{disableBtn}}" type="primary" bindtap="attendEvent">我要参加</button>
 </view>
