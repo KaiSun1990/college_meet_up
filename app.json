@@ -50,7 +50,7 @@
 
   "permission": {
     "scope.userLocation": {
-      "desc": "Grant access for location service"
+      "desc": "grant position"
     }
   }}
   
