@@ -88,6 +88,12 @@
 					"pathName": "pages/profile/profile",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Edit Profile",
+					"pathName": "pages/edit_profile/edit_profile",
+					"scene": null
 				}
 			]
 		}

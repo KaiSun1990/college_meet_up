@@ -6,7 +6,25 @@ Page({
    * Page initial data
    */
   data: {
-    disableBtn: false
+  },
+
+  getUserEvent: function() {
+    console.log("fetching user_event....")
+    let query = new wx.BaaS.Query()
+    let UserEvent = new wx.BaaS.TableObject('user_event')
+
+    query.compare('event_id', '=', this.data.event.id)
+    query.compare('user_id', '=', this.data.user.id)
+    console.log("ready for query...")
+    UserEvent.setQuery(query).expand(['event_id', 'user_id']).find().then(res => {
+      console.log(res.data.objects[0])
+      let user_event = res.data.objects[0];
+      console.log('userEvent fetched')
+      this.setData ( {user_event} )
+      if ((user_event.going === true)) {
+        this.setData({disableAttendBtn: true})
+      }
+    })
   },
 
   attendEvent: function () {
@@ -41,7 +59,62 @@ Page({
     }, err => {
     })
 
-    this.setData({ disableBtn: true })
+    this.setData({ disableAttendBtn: true })
+    wx.reLaunch({
+      url: `/pages/show/show?id=${this.data.event.id}`
+    })
+  },
+
+  unsaveUserEvent: function () {
+    let user_event = this.data.user_event
+    user_event.saved = false
+
+    let User_event = new wx.BaaS.TableObject('user_event')
+    let db_user_event = User_event.getWithoutData(user_event.id)
+    db_user_event.set("saved", user_event.saved)
+    db_event.update().then(res => {
+      console.log(res);
+    }, err => {
+    })
+    wx.reLaunch({
+      url: `/pages/show/show?id=${this.data.event.id}`
+    })
+  },
+
+  saveUserEvent: function () {
+    if (this.data.user_event) {
+      let user_event = this.data.user_event
+      user_event.saved = true
+
+      let User_event = new wx.BaaS.TableObject('user_event')
+      let db_user_event = User_event.getWithoutData(user_event.id)
+      db_user_event.set("saved", user_event.saved)
+      db_event.update().then(res => {
+        console.log(res);
+      }, err => {
+      })
+    } else {
+        let User_event = new wx.BaaS.TableObject('user_event')
+        let user_event = User_event.create()
+        let new_user_event = {
+          user_id: this.data.user.id,
+          event_id: this.data.event.id,
+          saved: true
+        }
+        user_event.set(new_user_event).save().then(res => {
+          console.log(res)
+        }, err => {
+        })
+    }
+    wx.reLaunch({
+      url: `/pages/show/show?id=${this.data.event.id}`
+    })
+  },
+
+  navigateToHome: function () {
+    wx.switchTab({
+      url: '/pages/home/home'
+    })
   },
 
   getEvent(id) {
@@ -91,6 +164,8 @@ Page({
     wx.BaaS.auth.getCurrentUser().then(user => {
       // user 为 currentUser 
       this.setData({ user })
+      console.log("ready to get user_event")
+      this.getUserEvent()
     }).catch(err => {
       // HError
       if (err.code === 604) {

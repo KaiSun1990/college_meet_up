@@ -1,6 +1,7 @@
 <view class="page__container">
   <view class="form-flexbox">
     <view class="title">昵称</view>
+
     <input class="input" value="{{user.custom_nickname}}" placeholder="填写您的昵称" bindinput = "onChangeName"></input>
   </view>
 
@@ -15,3 +16,4 @@
   </view>
   <button type="primary" bindtap="eventPackageSubmit">保存</button>
 </view>
+
