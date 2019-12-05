@@ -94,7 +94,8 @@ uploadImage: function () {
       latitude: this.data.event.latitude,
       date: this.data.event.date.concat(" ", this.data.event.time),
       description: this.data.event.description,
-      image: this.data.event.image
+      image: this.data.event.image,
+      creator_avatar: this.data.user.avatar
     }
     console.log('My event package ----->' , newEvent)
 
@@ -128,7 +129,23 @@ uploadImage: function () {
     })
   },
 
-  onLoad: function() {
+  onLoad: function (options) {
+    wx.BaaS.auth.getCurrentUser().then(user => {
+
+      // user 为 currentUser 
+      console.log(user)
+      console.log(user.nickname)
+      console.log(user.city)
+      console.log(user.province)
+      console.log(user.country)
+      console.log(user.gender)
+      this.setData({ user })
+    }).catch(err => {
+      // HError
+      if (err.code === 604) {
+        console.log('用户未登录')
+      }
+    })
   },
 
   onShow: function() {
