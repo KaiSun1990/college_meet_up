@@ -1,9 +1,9 @@
 <view clsss = "container">
 
   <view class = "swiper">
-    <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+    <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" style="width: 100vw; height: 30vh" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
       <swiper-item wx:for="{{swiperList}}" wx:key>
-        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}" style='width: 100%'></image>
+        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}" style='width: 100%; height: 100%'></image>
       </swiper-item>
     </swiper>
     </view>
@@ -12,10 +12,9 @@
     <block wx:else>
     </block>
   <view class = "events">
-    <view class = "event_title">精彩活动</view>
     
     <!-- Filter Bar Component -->
-    <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
+    <wux-filterbar items="{{ items }}" style="width: 100%" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
 
     <view class="event_container">
       <view wx:for="{{events}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>

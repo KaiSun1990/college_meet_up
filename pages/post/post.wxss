@@ -78,8 +78,8 @@ input {
 
 .btnImg {
   margin: 10rpx;
-  width: 60rpx;
-  height: 60rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .picker-section {
