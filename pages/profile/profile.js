@@ -60,8 +60,8 @@ Page({
   setDisplayDate: function (event) {
     let date = new Date(event.date)
     const date_array = date.toLocaleString().split(', ')
-    event.display_day = date_array[0]
-    event.display_time = date_array[1]
+    event.display_day = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+    event.display_time = `${date.getHours() - 8}时${date.getMinutes()}分`
     return event
     // 1. create date object. 2. create local string from date object. 3. parse array. 4. take first indecies of array and set to event.display.date 5. set all events to local data 
   },

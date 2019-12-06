@@ -8,115 +8,220 @@ Page({
   data: {
   },
 
-  getUserEvent: function(event_id, user_id) {
-    console.log("fetching user_event....")
+  getUserEvent: function(eventId, userId) {
     let query = new wx.BaaS.Query()
     let UserEvent = new wx.BaaS.TableObject('user_event')
 
-    query.compare('event_id', '=', event_id)
-    query.compare('user_id', '=', user_id)
+    query.compare('event_id', '=', eventId.toString())
+    query.compare('user_id', '=', userId.toString())
     console.log("ready for query...")
     UserEvent.setQuery(query).find().then(res => {
+      console.log('fetched result object from getting User Event: ...')
       console.log(res)
-      let user_event = res;
-      console.log('userEvent fetched')
-      this.setData ( {user_event} )
-      if ((user_event.going === true)) {
-        this.setData({disableAttendBtn: true})
+      if (res.data.objects.length !== 0) {
+        let userEvent = res.data.objects[0];
+        console.log('userEvent fetched')
+        this.setData ( {userEvent} ) // Saving User Event to local page data
       }
     })
   },
 
   attendEvent: function () {
+    let user = this.data.user
     let event = this.data.event
-    let people_going = event.people_going
-    // console.log(people_going)
-    people_going = people_going === null ? "0" : people_going;
-    // console.log(people_going)
-    people_going += 1
-    // console.log(typeof people_going)
-    people_going = Number.parseInt(people_going)
-    // console.log(typeof people_going)
-    // console.log(people_going)
+    // (1) update people_going to Event object in data base
+    let peopleGoing = event.people_going
+    // console.log(peopleGoing)
+    peopleGoing = peopleGoing === null ? "0" : peopleGoing;
+    // console.log(peopleGoing)
+    console.log(peopleGoing)
+    // peopleGoing = Number.parseInt(peopleGoing)
+    // console.log(typeof peopleGoing)
+    peopleGoing += 1
+    // console.log(typeof peopleGoing)
+    // console.log(peopleGoing)
+    console.log(peopleGoing, typeof (peopleGoing))
     
-    let Event = new wx.BaaS.TableObject('event')
-    let db_event = Event.getWithoutData(event.id)
-    db_event.set("people_going", people_going)
-    db_event.update().then(res => {
+    let Event = new wx.BaaS.TableObject('event') // (2) update people_going to Event object in data base
+    let dbEvent = Event.getWithoutData(event.id)
+    dbEvent.set("people_going", peopleGoing)
+    dbEvent.update().then(res => {
+      this.setData({event: event})
       console.log(res);
     }, err => {
     })
 
-    let User_event = new wx.BaaS.TableObject('user_event')
-    let user_event = User_event.create()
-    let new_user_event = {
-      user_id: this.data.user.id,
-      event_id: this.data.event.id,
-      going: true
+    if ((!this.data.userEvent)) { // Create new User Event, if no User Event existing
+      let user = this.data.user
+      let event = this.data.event
+      let UserEvent = new wx.BaaS.TableObject('user_event')
+      let userEvent = UserEvent.create()
+      let newUserEvent = {
+        user_id: this.data.user.id,
+        event_id: this.data.event.id,
+        going: true
+      }
+      userEvent.set(newUserEvent).save().then(res => {
+        console.log("Result after saving new User Event")
+        console.log(res.data)
+        this.setData({userEvent: res.data})
+      }, err => {
+      })
+    
+      this.setData({ userEvent: newUserEvent })
+    } else { // changed going to true, if User Event already existing
+      let user = this.data.user
+      let event = this.data.event
+      let userEvent = this.data.userEvent
+      userEvent.going = true
+      this.setData({ userEvent: userEvent })
+      let UserEvent = new wx.BaaS.TableObject('user_event') // update going to User Event object in data base
+      let dbUserEvent = UserEvent.getWithoutData(userEvent.id)
+      dbUserEvent.set("going", userEvent.going)
+      dbUserEvent.update().then(res => {
+        console.log(res);
+        this.getUserEvent(user.id, event.id)
+      }, err => {
+      })
     }
-    user_event.set(new_user_event).save().then(res => {
-      console.log(res)
-    }, err => {
-    })
-
-    this.setData({ disableAttendBtn: true })
-
     wx.showToast({
       title: `已成功报名！`,
       icon: 'success'
-    })
-    wx.reLaunch({
-      url: `/ pages / show / show ? id = ${ this.data.event.id }`
-    })
-
-    
+    })    
   },
 
-  unsaveUserEvent: function () {
-    let user_event = this.data.user_event
-    user_event.saved = false
+  unsubscribeEvent: function () {
+    let user = this.data.user
+    let event = this.data.event
+    // (1) update people_going to Event object in data base
+    let peopleGoing = event.people_going
+    // console.log(peopleGoing)
+    peopleGoing = peopleGoing === null ? "0" : peopleGoing;
+    // console.log(peopleGoing)
+    console.log(peopleGoing)
+    // peopleGoing = Number.parseInt(peopleGoing)
+    // console.log(typeof peopleGoing)
+    peopleGoing -= 1
+    // console.log(typeof peopleGoing)
+    // console.log(peopleGoing)
+    console.log(peopleGoing, typeof (peopleGoing))
 
-    let User_event = new wx.BaaS.TableObject('user_event')
-    let db_user_event = User_event.getWithoutData(user_event.id)
-    db_user_event.set("saved", user_event.saved)
-    db_event.update().then(res => {
+    let Event = new wx.BaaS.TableObject('event') // (2) update people_going to Event object in data base
+    let dbEvent = Event.getWithoutData(event.id)
+    dbEvent.set("people_going", peopleGoing)
+    dbEvent.update().then(res => {
+      this.setData({ event: event })
       console.log(res);
     }, err => {
     })
-    wx.reLaunch({
-      url: `/pages/show/show?id=${this.data.event.id}`
+
+    
+    // changed going to false, if User Event already existing
+    let userEvent = this.data.userEvent
+    userEvent.going = false
+    this.setData({ userEvent: userEvent })
+    let UserEvent = new wx.BaaS.TableObject('user_event') // update going to User Event object in data base
+    let dbUserEvent = UserEvent.getWithoutData(userEvent.id)
+    dbUserEvent.set("going", userEvent.going)
+    dbUserEvent.update().then(res => {
+      console.log(res);
+      this.getUserEvent(user.id, event.id)
+    }, err => {
     })
+  
+    wx.showToast({
+      title: `取消成功！`,
+      icon: 'success'
+    })
+  },
+
+  unsaveUserEvent: function () {
+    let event = this.data.event // (1) update people_saved to Event object in data base
+    let peopleSaved = event.people_saved
+    console.log(peopleSaved, typeof(peopleSaved))
+    peopleSaved = peopleSaved === null ? "0" : peopleSaved;
+    // peopleSaved = Number.parseInt(peopleSaved)
+    peopleSaved -= 1
+
+    let Event = new wx.BaaS.TableObject('event') // (2) update people_saved to Event object in data base
+    let dbEvent = Event.getWithoutData(event.id)
+    dbEvent.set("people_saved", peopleSaved)
+    dbEvent.update().then(res => {
+      this.setData({ event: res.data })
+      console.log(res.data)
+    }, err => {
+    })
+
+    let userEvent = this.data.userEvent
+    userEvent.saved = false
+
+    let UserEvent = new wx.BaaS.TableObject('user_event') // update 'saved' to User Event object in data base
+    let dbUserEvent = UserEvent.getWithoutData(userEvent.id)
+    dbUserEvent.set("saved", userEvent.saved)
+    dbUserEvent.update().then(res => {
+      console.log(res);
+      this.setData({ userEvent: userEvent })
+    }, err => {
+    })
+
+    wx.showToast({
+      title: `成功取消收藏`,
+      icon: 'success'
+    })    
   },
 
   saveUserEvent: function () {
-    if (this.data.user_event) {
-      let user_event = this.data.user_event
-      user_event.saved = true
+    let event = this.data.event // (1) update people_saved to Event object in data base
+    let peopleSaved = event.people_saved
+    peopleSaved = peopleSaved === null ? "0" : peopleSaved;
+    // peopleSaved = Number.parseInt(peopleSaved)
+    peopleSaved += 1
+    console.log(peopleSaved, typeof(peopleSaved))
 
-      let User_event = new wx.BaaS.TableObject('user_event')
-      let db_user_event = User_event.getWithoutData(user_event.id)
-      db_user_event.set("saved", user_event.saved)
-      db_event.update().then(res => {
+    let Event = new wx.BaaS.TableObject('event') // (2) update 'people_saved' to Event object in data base
+    let dbEvent = Event.getWithoutData(event.id)
+    
+    dbEvent.set("people_saved", peopleSaved)
+    dbEvent.update().then(res => {
+      this.setData({event: res.data})
+    }, err => {
+    })
+    
+    if (this.data.userEvent) { // updating "saved" to true in DB, if User Event already exists
+      
+      let userEvent = this.data.userEvent
+      userEvent.saved = true
+
+      let UserEvent = new wx.BaaS.TableObject('user_event') // update 'saved' to User Event object in data base
+      let dbUserEvent = UserEvent.getWithoutData(userEvent.id)
+      dbUserEvent.set("saved", userEvent.saved)
+      dbUserEvent.update().then(res => {
         console.log(res);
+        this.setData({userEvent: userEvent})
+      }, err => {
+      }) 
+       
+    } else { // Creating new User Event and saving into DB, if User Event doens not exist yet
+    
+      let UserEvent = new wx.BaaS.TableObject('user_event')
+      let userEvent = UserEvent.create()
+      let newUserEvent = {
+        user_id: this.data.user.id,
+        event_id: this.data.event.id,
+        saved: true
+      }
+      userEvent.set(newUserEvent).save().then(res => {
+        console.log("Result after saving new User Event")
+        console.log(res.data)
+        this.setData({ userEvent: res.data })
       }, err => {
       })
-    } else {
-        let User_event = new wx.BaaS.TableObject('user_event')
-        let user_event = User_event.create()
-        let new_user_event = {
-          user_id: this.data.user.id,
-          event_id: this.data.event.id,
-          saved: true
-        }
-        user_event.set(new_user_event).save().then(res => {
-          console.log(res)
-        }, err => {
-        })
-    }
-    wx.reLaunch({
-      url: `/pages/show/show?id=${this.data.event.id}`
+     }
+        wx.showToast({
+      title: `已成功收藏！`,
+      icon: 'success'
     })
-  },
+      },
 
   navigateToHome: function () {
     wx.switchTab({
@@ -136,13 +241,10 @@ Page({
   },
 
   getEvent(id) {
-    console.log("lauch get event")
     let Event = new wx.BaaS.TableObject('event')
-    Event.get(id).then(res => {
-      console.log(res);
+    Event.get(id.toString()).then(res => {
       let event = res.data;
       event = this.setDisplayDate(event)
-      console.log(event);
       this.setData({ event })
       // success
     }, err => {
@@ -150,41 +252,21 @@ Page({
     })
   },
 
-  saveEvent: function () {
-    let tableName = "event"
-    let recordID = this.data.event.id
-    let Event = new wx.BaaS.TableObject(tableName)
-    let event = Event.getWithoutData(recordID)
-    event.people_saved.push({ user_id: this.user.id })
-    event.update().then(page.getRequestData)
-  },
-
-  getUserInfo: function () {
-
-  },
-
   setDisplayDate: function (event) {
     let date = new Date(event.date)
-    const date_array = date.toLocaleString().split(', ')
-    console.log(date.toLocaleString())
-    event.display_day = date_array[0]
-    event.display_time = date_array[1]
+
+    // const dateArray = date.toLocaleString().split(', ')
+    event.display_day = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+    event.display_time = `${date.getHours() - 8}时${date.getMinutes()}分`
     return event
   },
 
   onLoad: function (options) {
-    console.log(options)
-    let event_id = options.id // needs to be changed after linking it to index!!!!
-    console.log("show options id")
-    console.log(event_id)
-    this.getEvent(event_id)
-    // console.log(options)
-    wx.BaaS.auth.getCurrentUser().then(user => {
-      // user 为 currentUser 
-      this.setData({ user })
-      console.log("ready to get user_event")
-      let user_id = this.data.user.id
-      this.getUserEvent(event_id, user_id)
+    let eventId = options.id // Setting eventId from Page properties
+    this.getEvent(eventId) // Getting Event object by search with Event ID
+    wx.BaaS.auth.getCurrentUser().then(user => { // Getting current_user information
+      this.setData({ user })  // Saving current_user object to local page data
+      this.getUserEvent(eventId, user.id)
     }).catch(err => {
       // HError
       if (err.code === 604) {
