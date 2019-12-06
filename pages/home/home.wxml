@@ -32,7 +32,7 @@
               </view>
             </view>
             <view class="info-3">
-              <view class="location">{{item.people_going}} 人已报名</view>
+              <view class="location">{{item.people_going || "0" }} 人已报名</view>
             </view>
           </view>
           <view class="card-left">

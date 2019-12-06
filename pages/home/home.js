@@ -94,7 +94,7 @@ Page({
 
     Event.setQuery(query).orderBy(order).find()
       .then(res => {
-        console.log(res)
+        
         let data = res.data.objects
         let dates_array = []
         data.forEach((item) => {
@@ -116,9 +116,9 @@ Page({
 
   setDisplayDate: function(event) {
     let date = new Date(event.date)
-    const date_array = date.toLocaleString().split(', ')
-    event.display_day = date_array[0]
-    event.display_time = date_array[1]
+    // const date_array = date.toLocaleString().split(', ')
+    event.display_day = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`
+    event.display_time = `${date.getHours() - 8}时${date.getMinutes()}分`
     return event
   },
 
