@@ -4,7 +4,7 @@
  <image class='btn-photo' bindtap='uploadImage' src="{{event.image}}" >
  <view class="upload-img-all" wx:if="{{!event.image}}">
     <view class="upload-img" >
-      <image class='btnImg' src='../../image/上传照片.png'></image>
+      <image class='btnImg' src='../../image/image.gif'></image>
       <view>上传封面(必填)</view>
     </view>
     <view class="upload-info">高质量的封面图片能带来更多浏览</view>

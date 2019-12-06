@@ -12,7 +12,6 @@
     <block wx:else>
     </block>
   <view class = "events">
-    <!-- <view class = "event_title">精彩活动</view> -->
     
     <!-- Filter Bar Component -->
     <wux-filterbar items="{{ items }}" style="width: 100%" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />

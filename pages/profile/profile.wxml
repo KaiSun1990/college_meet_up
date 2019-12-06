@@ -22,7 +22,7 @@
       </view>
     </view>
     <view class="edit-icon">
-      <image class="edit-icon" bindtap="navigateToEditProfile" src="../../image/编辑.png"></image>
+      <image class="edit-icon" bindtap="navigateToEditProfile" src="../../image/pencil.gif"></image>
     </view>
 
 </view>
