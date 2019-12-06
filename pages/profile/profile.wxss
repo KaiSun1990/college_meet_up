@@ -10,8 +10,10 @@
 }
 
 
-.switch-bar {
+.bar {
   /* padding: 5rpx; */
+  margin: 30rpx auto;
+  width: 100vw;
 }
 
 .header .avatar {
