@@ -18,7 +18,7 @@
       </view>
       <view class="info">
         <image class='picker-img' src='../../image/地点.png'></image>
-        <text>{{ event.address }}</text>
+        <text bindtap = "openLocation">{{ event.address }}</text>
       </view>
     </view>
     <view class="bottom-section">
