@@ -3,7 +3,7 @@
   <view class = "swiper">
     <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
       <swiper-item wx:for="{{swiperList}}" wx:key>
-        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}" style='width: 100%; height: 25vh'></image>
+        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}" style='width: 100%'></image>
       </swiper-item>
     </swiper>
     </view>
@@ -17,21 +17,35 @@
   placeholder-filter
   </view> -->
   <!-- button wx:if="{{!user.nickname}}" open-type="getUserInfo" bindgetuserinfo="loginWithWechat"> Login into your Wechat </button-->
-  <button wx:if="{{!user.id}}" class="login-btn" style="width: 90vw; margin: 20rpx auto;" block type="balanced" open-type="getUserInfo" bindgetuserinfo="loginWithWechat">点击授权</button>
+  <button wx:if="{{!user.id}}" class="login-btn" style="width: 90vw; margin: 20rpx auto;" block type="balanced" type="primary" open-type="getUserInfo" bindgetuserinfo="loginWithWechat">点击登陆</button>
     <block wx:else>
     </block>
   <view class = "events">
     <view class = "event_title">精彩活动</view>
-    <view wx:for="{{events}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>
-      <view class = "event_card">
-        <image class = "event_img" mode = "aspectFill" src="{{item.image}}" />
-        <view class="event_card-infos">
-          <view class = "h2">{{item.name}}</view>
-          <view class = "p">{{item.display_day}} {{item.display_time}}</view>
-          <view class = "p">{{item.people_going}} 人已报名</view>
+    <view class="event_container">
+      <view wx:for="{{events}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>
+        <view class="event-card">
+          <image  class= "event-img" mode = "aspectFill" src = "{{ item.image }}" />
+          <view class="event-info">
+            <view class="info-1">{{ item.name }}</view>
+            <view class="info-2">
+              <view class="date">
+                <text class="date-content">{{ item.display_day }}</text>
+              </view>
+              <view class="time">
+                <text class="time-content">{{ item.display_time }}</text>
+              </view>
+            </view>
+            <view class="info-3">
+              <view class="location">{{item.people_going}} 人已报名</view>
+            </view>
+          </view>
+          <view class="card-left">
+            <!-- <image  class= "save-icon" mode = "aspectFill" src = "../../image/更多.png" />      -->
+            <view class="status-sign">   </view>
+            <image  class= "avatar-sm" mode = "aspectFill" src = "{{ item.creator_avatar }}" />
+          </view>
         </view>
-        <image  class = "avatar" mode = "aspectFill" src = "{{item.creator_avatar}}" />
-        <!-- <image class = "button_save" src = "../../image/save.png" /> -->
       </view>
     </view>
   </view>

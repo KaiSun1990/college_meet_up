@@ -155,6 +155,7 @@ Page({
   setDisplayDate: function (event) {
     let date = new Date(event.date)
     const date_array = date.toLocaleString().split(', ')
+    console.log(date.toLocaleString())
     event.display_day = date_array[0]
     event.display_time = date_array[1]
     return event
