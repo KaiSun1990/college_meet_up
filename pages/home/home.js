@@ -23,15 +23,78 @@ Page({
         url: 'https://www.desicomments.com/wp-content/uploads/2018/10/Weekend-Loading.jpg'
     }],
 
+    items: [
+      {
+        type: 'filter',
+        label: '筛选',
+        value: 'filter',
+        checked: true,
+        children: [
+          {
+            type: 'checkbox',
+            label: '活动类型（复选）',
+            value: 'tag',
+            children: [{
+              label: '娱乐',
+              value: '娱乐',
+              checked: true,
+            },
+            {
+              label: '运动',
+              value: '运动',
+            },
+            {
+              label: '学习',
+              value: '学习',
+              checked: true, // 默认选中
+            },
+            {
+              label: '约饭',
+              value: '约饭',
+            },
+            {
+              label: '购物',
+              value: '购物',
+            },
+            ],
+          },
+        ],
+        groups: ['001', '002', '003'],
+      },
+    ],
+    filter:undefined,
   },
 
-  getEvents: function () {
+  onChange: function (e) {
+    let filter = e.detail.checkedValues[0][0]
+    this.setData({filter})
+    console.log("filter",filter)
     let query = new wx.BaaS.Query()
+    query.in('tag', filter) 
+    let Product = new wx.BaaS.TableObject("event")
+    Product.setQuery(query).find().then(res => {
+      // success
+      let data = res.data.objects
+      let dates_array = []
+      data.forEach((item) => {
+        let event = this.setDisplayDate(item)
+        dates_array.push(event)
+      })
+      this.setData({ events: dates_array })
+    }, err => {
+      // err
+    })
+  },
+
+  getEvents: function (params = {}) {
+    let query = new wx.BaaS.Query()
+    let order = params.order || 'date'
     let Event = new wx.BaaS.TableObject('event')
     query.compare('created_at', '>', 0)
 
-    Event.setQuery(query).orderBy('date').find()
+    Event.setQuery(query).orderBy(order).find()
       .then(res => {
+        console.log(res)
         let data = res.data.objects
         let dates_array = []
         data.forEach((item) => {
@@ -57,7 +120,6 @@ Page({
     event.display_day = date_array[0]
     event.display_time = date_array[1]
     return event
-  // 1. create date object. 2. create local string from date object. 3. parse array. 4. take first indecies of array and set to event.display.date 5. set all events to local data 
   },
 
 
@@ -84,60 +146,12 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     this.getCurrentUser();
     this.getEvents();
+    
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

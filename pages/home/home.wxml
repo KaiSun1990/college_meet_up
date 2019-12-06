@@ -8,20 +8,15 @@
     </swiper>
     </view>
 
-
-  <!-- <view class = "group">
-  placeholder-groups
-  </view>
-  <template is="filter" />
-  <view class = "event_filter">
-  placeholder-filter
-  </view> -->
-  <!-- button wx:if="{{!user.nickname}}" open-type="getUserInfo" bindgetuserinfo="loginWithWechat"> Login into your Wechat </button-->
   <button wx:if="{{!user.id}}" class="login-btn" style="width: 90vw; margin: 20rpx auto;" block type="balanced" type="primary" open-type="getUserInfo" bindgetuserinfo="loginWithWechat">点击登陆</button>
     <block wx:else>
     </block>
   <view class = "events">
     <view class = "event_title">精彩活动</view>
+    
+    <!-- Filter Bar Component -->
+    <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
+
     <view class="event_container">
       <view wx:for="{{events}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>
         <view class="event-card">
