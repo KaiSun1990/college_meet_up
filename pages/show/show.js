@@ -124,6 +124,17 @@ Page({
     })
   },
 
+  openLocation: function () {
+    
+    let latitude = this.data.event.latitude
+    let longitude = this.data.event.longitude
+    wx.openLocation({
+      latitude,
+      longitude,
+      scale: 18
+    })
+  },
+
   getEvent(id) {
     console.log("lauch get event")
     let Event = new wx.BaaS.TableObject('event')
