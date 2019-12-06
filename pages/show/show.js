@@ -243,6 +243,7 @@ Page({
 
   setDisplayDate: function (event) {
     let date = new Date(event.date)
+
     // const dateArray = date.toLocaleString().split(', ')
     event.display_day = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
     event.display_time = `${date.getHours() - 8}时${date.getMinutes()}分`

@@ -2,33 +2,12 @@ Page({
   
 
   data: {
-    items: [{
-      type: 'radio',
-      label: 'Updated',
-      value: 'updated',
-      checked: true,
-      children: [{
-        label: 'Recently updated',
-        value: 'desc',
-        checked: true, // 默认选中
-      },
-      {
-        label: 'Least recently updated',
-        value: 'asc',
-      },
-      ],
-      groups: ['001'],
-    },
-    {
-      type: 'text',
-      label: 'Forks',
-      value: 'forks',
-      groups: ['002'],
-    },
+    items: [
+   
     {
       type: 'sort',
-      label: 'Stars',
-      value: 'stars',
+      label: '时间',
+      value: 'time',
       groups: ['003'],
     },
     {
@@ -36,188 +15,32 @@ Page({
       label: '筛选',
       value: 'filter',
       checked: true,
-      children: [{
-        type: 'radio',
-        label: 'Languages（单选）',
-        value: 'language',
-        children: [{
-          label: 'JavaScript',
-          value: 'javascript',
-        },
-        {
-          label: 'HTML',
-          value: 'html',
-        },
-        {
-          label: 'CSS',
-          value: 'css',
-        },
-        {
-          label: 'TypeScript',
-          value: 'typescript',
-        },
-        ],
-      },
+      children: [
       {
         type: 'checkbox',
-        label: 'Query（复选）',
-        value: 'query',
+        label: '活动类型（复选）',
+        value: 'tag',
         children: [{
-          label: 'Angular',
-          value: 'angular',
+          label: '娱乐',
+          value: '娱乐',
+          checked: true,
         },
         {
-          label: 'Vue',
-          value: 'vue',
+          label: '运动',
+          value: '运动',
         },
         {
-          label: 'React',
-          value: 'react',
+          label: '学习',
+          value: '学习',
           checked: true, // 默认选中
         },
         {
-          label: 'Avalon',
-          value: 'avalon',
-        },
-        ],
-      },
-      {
-        type: 'checkbox',
-        label: '配送方式',
-        value: 'away',
-        children: [{
-          label: '京东配送',
-          value: '1',
+          label: '约饭',
+          value: '约饭',
         },
         {
-          label: '货到付款',
-          value: '2',
-        },
-        {
-          label: '仅看有货',
-          value: '3',
-        },
-        {
-          label: '促销',
-          value: '4',
-        },
-        {
-          label: '全球购',
-          value: '5',
-        },
-        {
-          label: 'PLUS专享价',
-          value: '6',
-        },
-        {
-          label: '新品',
-          value: '7',
-        },
-        {
-          label: '配送全球',
-          value: '8',
-        },
-        ],
-      },
-      {
-        type: 'radio',
-        label: '性别',
-        value: 'gander',
-        children: [{
-          label: '男',
-          value: '0',
-        },
-        {
-          label: '女',
-          value: '1',
-        },
-        {
-          label: '通用',
-          value: '2',
-        },
-        ],
-      },
-      {
-        type: 'checkbox',
-        label: '闭合方式',
-        value: 'closed_mode',
-        children: [{
-          label: '卡扣',
-          value: '0',
-        },
-        {
-          label: '拉链',
-          value: '1',
-        },
-        {
-          label: '其他',
-          value: '2',
-        },
-        ],
-      },
-      {
-        type: 'checkbox',
-        label: '轮子种类',
-        value: 'wheel_type',
-        children: [{
-          label: '万向轮',
-          value: '0',
-        },
-        {
-          label: '单向轮',
-          value: '1',
-        },
-        {
-          label: '飞机轮',
-          value: '2',
-        },
-        {
-          label: '其他',
-          value: '3',
-        },
-        ],
-      },
-      {
-        type: 'checkbox',
-        label: '箱包硬度',
-        value: 'wheel_type',
-        children: [{
-          label: '硬箱',
-          value: '0',
-        },
-        {
-          label: '软硬结合',
-          value: '1',
-        },
-        {
-          label: '软箱',
-          value: '2',
-        },
-        {
-          label: '其他',
-          value: '3',
-        },
-        ],
-      },
-      {
-        type: 'checkbox',
-        label: '适用场景',
-        value: 'wheel_type',
-        children: [{
-          label: '旅行',
-          value: '0',
-        },
-        {
-          label: '婚庆',
-          value: '1',
-        },
-        {
-          label: '出差',
-          value: '2',
-        },
-        {
-          label: '其他',
-          value: '3',
+          label: '购物',
+          value: '购物',
         },
         ],
       },
@@ -237,21 +60,13 @@ Page({
 
     checkedItems.forEach((n) => {
       if (n.checked) {
-        if (n.value === 'updated') {
+        if (n.value === 'time') {
           const selected = n.children.filter((n) => n.checked).map((n) => n.value).join(' ')
           params.sort = n.value
           params.order = selected
-        } else if (n.value === 'stars') {
-          params.sort = n.value
-          params.order = n.sort === 1 ? 'asc' : 'desc'
-        } else if (n.value === 'forks') {
-          params.sort = n.value
         } else if (n.value === 'filter') {
           n.children.filter((n) => n.selected).forEach((n) => {
-            if (n.value === 'language') {
-              const selected = n.children.filter((n) => n.checked).map((n) => n.value).join(' ')
-              params.language = selected
-            } else if (n.value === 'query') {
+            if (n.value === 'tag') {
               const selected = n.children.filter((n) => n.checked).map((n) => n.value).join(' ')
               params.query = selected
             }
@@ -264,6 +79,7 @@ Page({
 
     this.getRepos(params)
   },
+  
   getRepos(params = {}) {
     const language = params.language || 'javascript'
     const query = params.query || 'react'

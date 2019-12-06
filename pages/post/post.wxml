@@ -5,47 +5,56 @@
  <view class="upload-img-all" wx:if="{{!event.image}}">
     <view class="upload-img" >
       <image class='btnImg' src='../../image/上传照片.png'></image>
-      <view>上传封面</view>
+      <view>上传封面(必填)</view>
     </view>
+    <view class="upload-info">高质量的封面图片能带来更多浏览</view>
   </view>
  </image>
 
 <view class="picker-section">
 
-  <picker mode="date" value="{{date}}" start="{{ dateNow }}" end="2020-09-01" bindchange="bindDateChange">
+  <picker class="picker-main" mode="date" value="{{date}}" start="{{ dateNow }}" end="2020-09-01" bindchange="bindDateChange">
     <view class="picker">
       <image class='picker-img' src='../../image/日期.png'></image>
       <text>{{event.date || '日期'}}</text>
     </view>
   </picker>
 
-  <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+  <picker class="picker-main" mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
     <view class="picker" >
       <image class='picker-img' src='../../image/时间.png'></image>
       <text>{{event.time || '时间'}}</text>
     </view>
   </picker>
 </view>
-<view>
-  <button class = "location-btn" bindtap="getMapLocation">
-  <text>{{event.address ||"添加地点"}}</text>
-  </button>
+<view class="location-section">
+  <view class = "location-btn" bindtap="getMapLocation">
+    <image class='picker-img' src='../../image/地点.png'></image>
+    <text>{{event.address ||"添加地点"}}</text>
+  </view> 
 </view>
 
   <form class="form">
     <view class="section">
-      <input class="title" value="{{name}}" placeholder="为你的活动写个标题吧" data-type="name" bindinput = "onChangeName"></input>
+      <input class="title" value="{{name}}" placeholder-class="place-holder" placeholder="★ 为你的活动写个标题吧" data-type="name" bindinput = "onChangeName"></input>
     </view>
     <view class="section">
       <view class="form-content">
-        <textarea class="content" value="{{description}}" placeholder="介绍一下你的活动内容" data-type="content" bindinput = "onChangeContent"></textarea>
+        <textarea class="content" placeholder-class="place-holder" value="{{description}}" placeholder="★ 介绍一下你的活动内容" data-type="content" bindinput = "onChangeContent"></textarea>
       </view>
     </view>
 
-  <view class="submit-btn">
-    <button type="primary" form-type="submit" bindtap="eventPackageSubmit">发布</button>
-  </view>
+  <checkbox-group class="checkgroup" bindchange="checkboxChange">
+    <label class="checkbox" wx:for="{{items}}">
+      <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+  </checkbox-group>
 
+  <view class="submit-btn">
+    <button style="width: 100%" type="primary" form-type="submit" bindtap="eventPackageSubmit">发布</button>
+  </view>
   </form>
+
+
 </view>
 </view>
