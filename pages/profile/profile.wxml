@@ -26,19 +26,49 @@
     </view>
 
 </view>
+<wux-segmented-control class="switch-bar" values="{{ ['我的报名', '我的收藏'] }}" bind:change="onChange" />
 
-<view class="lib-bar">
+<!-- <view class="lib-bar">
   <view class="my-signup">
     <text>我的报名</text>
   </view>
   <view class="my-save">
     <text>我的收藏</text>
   </view>
-</view>
+</view> -->
 
-<view class="profile_event_container">
+<view wx:if="{{!current}}" class="profile_event_container">
   
   <view wx:for="{{user_events}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>
+    <view class="event-card">
+      <image  class= "event-img" mode = "aspectFill" src = "{{ item.image }}" />
+      <view class="event-info">
+        <view class="info-1">{{ item.name }}</view>
+        <view class="info-2">
+          <view class="date">
+            <text class="date-content">{{ item.display_day }}</text>
+          </view>
+          <view class="time">
+            <text class="time-content">{{ item.display_time }}</text>
+          </view>
+        </view>
+        <view class="info-3">
+          <view class="location">{{item.people_going}} 人已报名</view>
+        </view>
+      </view>
+      <view class="card-left">
+        <!-- <image  class= "save-icon" mode = "aspectFill" src = "../../image/更多.png" />      -->
+        <view class="status-sign">已报名</view>
+        <image  class= "avatar-sm" mode = "aspectFill" src = "{{ item.creator_avatar }}" />
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view wx:else class="profile_event_container">
+  
+  <view wx:for="{{user_events_saved}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>
     <view class="event-card">
       <image  class= "event-img" mode = "aspectFill" src = "{{ item.image }}" />
       <view class="event-info">

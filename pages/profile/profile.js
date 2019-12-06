@@ -5,6 +5,7 @@ Page({
    * Page initial data
    */
   data: {
+    current: 1,
   },
 
   getUserEvents: function (id) {
@@ -23,6 +24,25 @@ Page({
       user_events = user_events.map(user_event => this.setDisplayDate(user_event.event_id))
 
       this.setData({ user_events })
+    })
+  },
+
+  getUserEventsSaved: function (id) {
+    console.log("fetching user_events....")
+    let query = new wx.BaaS.Query()
+    let UserEvent = new wx.BaaS.TableObject('user_event')
+
+    query.compare('user_id', '=', id)
+    query.compare('saved', '=', true)
+    console.log("ready for query...")
+    UserEvent.setQuery(query).expand(['event_id']).find().then(res => {
+      console.log(res.data.objects)
+      let user_events_saved = res.data.objects;
+      console.log(this.data.user_events);
+
+      user_events_saved = user_events_saved.map(user_event => this.setDisplayDate(user_event.event_id))
+
+      this.setData({ user_events_saved })
     })
   },
 
@@ -132,5 +152,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onChange(e) {
+    this.setData({
+      current: e.detail.key,
+    })
   }
 })

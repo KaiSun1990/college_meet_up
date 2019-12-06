@@ -10,6 +10,10 @@
 }
 
 
+.switch-bar {
+  /* padding: 5rpx; */
+}
+
 .header .avatar {
   width: 220rpx;
   height: 220rpx;
