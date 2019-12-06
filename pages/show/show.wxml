@@ -15,7 +15,7 @@
       </view>
       <view class="info">
         <image class='picker-img' src='../../image/时间.png'></image>
-        <text>{{ event.display_time }}</text>
+        <!-- <text>{{ event.display_time }}</text> -->
       </view>
       <view class="info">
         <image class='picker-img' src='../../image/地点.png'></image>
