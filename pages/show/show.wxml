@@ -7,7 +7,7 @@
   </view>
 
   <view class="banner-card">
-    <image class="img" src="{{ event.image }}" mode="aspectFill" style="width: 100vw"></image>
+    <image class="img" src="{{ event.image }}" mode="aspectFill"></image>
     <view class="mid-section">
       <view class="info">
         <image class='picker-img' src='../../image/日期.png'></image>
@@ -38,11 +38,11 @@
       <text>主页</text>
     </view>
     <view wx:if="{{userEvent.saved}}" class="icon-card" bindtap="unsaveUserEvent">
-      <image class="icon" src="../../image/已想看.png"></image>
+      <image class="icon" src="../../image/想看.png"></image>
       <text>取消收藏</text>
     </view>
     <view wx:else class="icon-card" bindtap="saveUserEvent">
-      <image class="icon" src="../../image/想看.png"></image>
+      <image class="icon" src="../../image/已想看.png"></image>
       <text>收藏</text>
     </view>
     <!-- <view class="icon-card">
