@@ -29,7 +29,7 @@
 <view>
   <button class = "location-btn" bindtap="getMapLocation">
   <text>{{event.address ||"添加地点"}}</text>
-  </button>
+  </button> 
 </view>
 
   <form class="form">
@@ -42,10 +42,17 @@
       </view>
     </view>
 
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox" wx:for="{{items}}">
+      <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+  </checkbox-group>
+
   <view class="submit-btn">
     <button type="primary" form-type="submit" bindtap="eventPackageSubmit">发布</button>
   </view>
-
   </form>
+
+
 </view>
 </view>

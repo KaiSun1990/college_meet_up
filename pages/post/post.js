@@ -12,7 +12,22 @@ Page({
       longitude: undefined
     },
     dateNow: undefined,
+    items: [
+      { name: '娱乐', value: '娱乐' },
+      { name: '运动', value: '运动' },
+      { name: '学习', value: '学习' },
+      { name: '约饭', value: '约饭' },
+      { name: '购物', value: '购物' },
+    ]},
+
+  checkboxChange: function (e) {
+    this.setData({
+      "event.tag": e.detail.value
+  })
+    console.log(this.data.event.tag)
   },
+
+
 
 dateToday: function () {
   let now = new Date();
@@ -95,7 +110,8 @@ uploadImage: function () {
       date: this.data.event.date.concat(" ", this.data.event.time),
       description: this.data.event.description,
       image: this.data.event.image,
-      creator_avatar: this.data.user.avatar
+      creator_avatar: this.data.user.avatar,
+      tag: this.data.event.tag 
     }
     console.log('My event package ----->' , newEvent)
 
