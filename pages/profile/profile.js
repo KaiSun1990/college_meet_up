@@ -95,6 +95,7 @@ Page({
       user.bio = user.get("bio")
       this.setData({ user })
       this.getUserEvents(user.id)
+      this.getUserEventsSaved(user.id)
       
       
     }).catch(err => {
