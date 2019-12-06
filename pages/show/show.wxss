@@ -39,6 +39,7 @@
   font-style: bold;
   font-size: 40rpx;
   text-align: bottom;
+  width: 70%;
 }
 
 .top-img{
@@ -49,11 +50,12 @@
   right: -10rpx;
 }
 
-image {
+.img {
   display: block;
   border-radius: 5rpx;
   width: 100%;
   height: 500rpx;
+  box-shadow: 0 0 5rpx 5rpx #9c9c9c;
 }
 
 
@@ -63,8 +65,10 @@ image {
   align-items: left;
   flex-direction: column;
   background-color: white;
-  margin: 0rpx;
+  margin-top: 30rpx;
   border-bottom: 3rpx solid #cfcfcf;
+  border-top: 3rpx solid #cfcfcf;
+
 }
 
 .mid-section .info {
@@ -125,6 +129,6 @@ image {
 
 .icon-card .icon {
   margin: 5rpx;
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
