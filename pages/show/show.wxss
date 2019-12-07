@@ -50,6 +50,13 @@
   right: -10rpx;
 }
 
+.participants-avatars .avatar-sm {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
 .img {
   display: block;
   border-radius: 5rpx;

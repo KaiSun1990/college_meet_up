@@ -8,6 +8,25 @@
 
   <view class="banner-card">
     <image class="img" src="{{ event.image }}" mode="aspectFill"></image>
+
+
+    <view class="participants-section">
+      <view>
+        <text>{{ event.people_going }}人 以报名</text>
+      </view>
+
+      <view wx:for="{{user_events}}" class="card-container" wx:key>
+        <view class="participants-avatars">
+          <image  class= "avatar-sm" mode = "aspectFill" src = "{{ item.user_id.avatar }}" />
+        </view>
+      </view>
+
+      <view>
+        <text>{{ event.people_saved }}人 收藏</text>
+      </view>
+    </view>
+
+
     <view class="mid-section">
       <view class="info">
         <image class='picker-img' src='../../image/日期.png'></image>
@@ -15,7 +34,7 @@
       </view>
       <view class="info">
         <image class='picker-img' src='../../image/时间.png'></image>
-        <!-- <text>{{ event.display_time }}</text> -->
+        <text>{{ event.display_time }}</text>
       </view>
       <view class="info">
         <image class='picker-img' src='../../image/地点.png'></image>
@@ -45,11 +64,11 @@
       <image class="icon" src="../../image/已想看.png"></image>
       <text>收藏</text>
     </view>
-    <!-- <view class="icon-card">
-      <image class="icon" src="../../image/分享.png"></image>
+    <view class="icon-card" bindtap="onShareAppMessage">
+      <image class="icon share-btn" open-type="share" src="../../image/share.png"></image>
       <text>分享</text>
-    </view> -->
+    </view>
 
   <button class="sign-up" wx:if="{{!userEvent.going}}" type="primary" bindtap="attendEvent">我要参加</button>
-  <button class="sign-up" wx:else  type="primary" bindtap="unsubscribeEvent">取消参加</button>
+  <button class="sign-up" wx:else  type="warn" bindtap="unsubscribeEvent">取消参加</button>
 </view>
