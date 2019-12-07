@@ -8,6 +8,13 @@ Page({
   data: {
   },
 
+  onShareAppMessage: function () {
+    console.log('share')
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+  },
+
   getUserEvent: function(eventId, userId) {
     let query = new wx.BaaS.Query()
     let UserEvent = new wx.BaaS.TableObject('user_event')
@@ -31,23 +38,17 @@ Page({
     let event = this.data.event
     // (1) update people_going to Event object in data base
     let peopleGoing = event.people_going
-    // console.log(peopleGoing)
-    peopleGoing = peopleGoing === null ? "0" : peopleGoing;
-    // console.log(peopleGoing)
-    console.log(peopleGoing)
-    // peopleGoing = Number.parseInt(peopleGoing)
-    // console.log(typeof peopleGoing)
+    // peopleGoing = peopleGoing === null ? "0" : peopleGoing;
     peopleGoing += 1
-    // console.log(typeof peopleGoing)
-    // console.log(peopleGoing)
     console.log(peopleGoing, typeof (peopleGoing))
-    
     let Event = new wx.BaaS.TableObject('event') // (2) update people_going to Event object in data base
     let dbEvent = Event.getWithoutData(event.id)
     dbEvent.set("people_going", peopleGoing)
     dbEvent.update().then(res => {
-      this.setData({event: event})
-      console.log(res);
+      console.log(res, res.data)
+      let event = res.data
+      event = this.setDisplayDate(event)
+      this.setData({ event })
     }, err => {
     })
 
@@ -62,25 +63,24 @@ Page({
         going: true
       }
       userEvent.set(newUserEvent).save().then(res => {
-        console.log("Result after saving new User Event")
-        console.log(res.data)
-        this.setData({userEvent: res.data})
+        let userEvent = res.data
+        this.setData({ userEvent })
+        this.getUserEvents(this.data.event.id)
       }, err => {
       })
-    
-      this.setData({ userEvent: newUserEvent })
-    } else { // changed going to true, if User Event already existing
+
+    } else { // change going to true, if User Event already existing
       let user = this.data.user
       let event = this.data.event
       let userEvent = this.data.userEvent
       userEvent.going = true
-      this.setData({ userEvent: userEvent })
       let UserEvent = new wx.BaaS.TableObject('user_event') // update going to User Event object in data base
       let dbUserEvent = UserEvent.getWithoutData(userEvent.id)
       dbUserEvent.set("going", userEvent.going)
       dbUserEvent.update().then(res => {
-        console.log(res);
-        this.getUserEvent(user.id, event.id)
+        let userEvent = res.data
+        this.setData({ userEvent })
+        this.getUserEvents(this.data.event.id)
       }, err => {
       })
     }
@@ -95,37 +95,31 @@ Page({
     let event = this.data.event
     // (1) update people_going to Event object in data base
     let peopleGoing = event.people_going
-    // console.log(peopleGoing)
-    peopleGoing = peopleGoing === null ? "0" : peopleGoing;
-    // console.log(peopleGoing)
-    console.log(peopleGoing)
-    // peopleGoing = Number.parseInt(peopleGoing)
-    // console.log(typeof peopleGoing)
+    // peopleGoing = peopleGoing === null ? "0" : peopleGoing;
     peopleGoing -= 1
-    // console.log(typeof peopleGoing)
-    // console.log(peopleGoing)
     console.log(peopleGoing, typeof (peopleGoing))
 
     let Event = new wx.BaaS.TableObject('event') // (2) update people_going to Event object in data base
     let dbEvent = Event.getWithoutData(event.id)
     dbEvent.set("people_going", peopleGoing)
     dbEvent.update().then(res => {
-      this.setData({ event: event })
+      let event = res.data
+      event = this.setDisplayDate(event)
+      this.setData({ event })
       console.log(res);
     }, err => {
     })
 
-    
-    // changed going to false, if User Event already existing
+    // change 'going' to false, if User Event already existing
     let userEvent = this.data.userEvent
     userEvent.going = false
-    this.setData({ userEvent: userEvent })
     let UserEvent = new wx.BaaS.TableObject('user_event') // update going to User Event object in data base
     let dbUserEvent = UserEvent.getWithoutData(userEvent.id)
     dbUserEvent.set("going", userEvent.going)
     dbUserEvent.update().then(res => {
-      console.log(res);
-      this.getUserEvent(user.id, event.id)
+      let userEvent = res.data
+      this.setData({ userEvent })
+      this.getUserEvents(this.data.event.id)
     }, err => {
     })
   
@@ -147,8 +141,9 @@ Page({
     let dbEvent = Event.getWithoutData(event.id)
     dbEvent.set("people_saved", peopleSaved)
     dbEvent.update().then(res => {
-      this.setData({ event: res.data })
-      console.log(res.data)
+      let event = res.data
+      event = this.setDisplayDate(event)
+      this.setData({ event })
     }, err => {
     })
 
@@ -159,8 +154,9 @@ Page({
     let dbUserEvent = UserEvent.getWithoutData(userEvent.id)
     dbUserEvent.set("saved", userEvent.saved)
     dbUserEvent.update().then(res => {
-      console.log(res);
-      this.setData({ userEvent: userEvent })
+      let userEvent = res.data
+      this.setData({ userEvent })
+      this.getUserEvents(this.data.event.id)
     }, err => {
     })
 
@@ -183,7 +179,9 @@ Page({
     
     dbEvent.set("people_saved", peopleSaved)
     dbEvent.update().then(res => {
-      this.setData({event: res.data})
+      let event = res.data
+      event = this.setDisplayDate(event)
+      this.setData({ event })
     }, err => {
     })
     
@@ -196,8 +194,9 @@ Page({
       let dbUserEvent = UserEvent.getWithoutData(userEvent.id)
       dbUserEvent.set("saved", userEvent.saved)
       dbUserEvent.update().then(res => {
-        console.log(res);
-        this.setData({userEvent: userEvent})
+        let userEvent = res.data
+        this.setData({ userEvent })
+        this.getUserEvents(this.data.event.id)
       }, err => {
       }) 
        
@@ -211,9 +210,9 @@ Page({
         saved: true
       }
       userEvent.set(newUserEvent).save().then(res => {
-        console.log("Result after saving new User Event")
-        console.log(res.data)
-        this.setData({ userEvent: res.data })
+        let userEvent = res.data
+        this.setData({ userEvent })
+        this.getUserEvents(this.data.event.id)
       }, err => {
       })
      }
@@ -257,8 +256,29 @@ Page({
 
     // const dateArray = date.toLocaleString().split(', ')
     event.display_day = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
-    event.display_time = `${date.getHours() - 8}时${date.getMinutes()}分`
+    event.display_time = [date.getHours(), date.getMinutes()].map(this.formatNumber).join(':')
     return event
+  },
+
+  formatNumber: function (n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+  },
+
+  getUserEvents: function (eventId) {
+    console.log("fetching user_events....")
+    let query = new wx.BaaS.Query()
+    let UserEvent = new wx.BaaS.TableObject('user_event')
+
+    query.compare('event_id', '=', eventId)
+    query.compare('going', '=', true)
+    console.log("ready for query...")
+    UserEvent.setQuery(query).expand(['user_id']).find().then(res => {
+      console.log(res.data.objects)
+      let user_events = res.data.objects;
+      console.log(this.data.user_events);
+      this.setData({ user_events })
+    })
   },
 
   onLoad: function (options) {
@@ -267,6 +287,7 @@ Page({
     wx.BaaS.auth.getCurrentUser().then(user => { // Getting current_user information
       this.setData({ user })  // Saving current_user object to local page data
       this.getUserEvent(eventId, user.id)
+      this.getUserEvents(eventId)
     }).catch(err => {
       // HError
       if (err.code === 604) {
