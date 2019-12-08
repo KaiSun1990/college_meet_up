@@ -12,7 +12,7 @@
 
     <view class="participants-section">
       <view>
-        <text>{{ event.people_going }}人 以报名</text>
+        <text>{{ event.people_going }}人 已报名</text>
       </view>
 
       <view wx:for="{{user_events}}" class="card-container" wx:key>
@@ -22,7 +22,7 @@
       </view>
 
       <view>
-        <text>{{ event.people_saved }}人 收藏</text>
+        <text>{{ event.people_saved }}人 已收藏</text>
       </view>
     </view>
 
