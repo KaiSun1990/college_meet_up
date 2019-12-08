@@ -75,7 +75,20 @@
   margin-top: 30rpx;
   border-bottom: 3rpx solid #cfcfcf;
   border-top: 3rpx solid #cfcfcf;
+  position: relative;
+}
 
+#delete-btn {
+  position: absolute;
+  top: 10rpx;
+  right: 0rpx;
+  width: 200rpx;
+  padding: 4rpx auto;
+  font-size: 35rpx;
+}
+
+#sign-up {
+  width: 300rpx;
 }
 
 .mid-section .info {
@@ -132,6 +145,18 @@
   justify-content: center;
   align-items: center;
   font-size: 24rpx;
+  width: 100rpx;
+}
+
+#share {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  width: 100rpx;
+  background-color: #fff;
+  padding: 0;
 }
 
 .icon-card .icon {

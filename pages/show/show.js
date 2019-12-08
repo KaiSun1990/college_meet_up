@@ -8,13 +8,6 @@ Page({
   data: {
   },
 
-  onShareAppMessage: function () {
-    console.log('share')
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-  },
-
   getUserEvent: function(eventId, userId) {
     let query = new wx.BaaS.Query()
     let UserEvent = new wx.BaaS.TableObject('user_event')
@@ -256,7 +249,7 @@ Page({
 
     // const dateArray = date.toLocaleString().split(', ')
     event.display_day = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
-    event.display_time = [date.getHours(), date.getMinutes()].map(this.formatNumber).join(':')
+    event.display_time = [date.getHours() + 8, date.getMinutes()].map(this.formatNumber).join(':')
     return event
   },
 
@@ -274,10 +267,51 @@ Page({
     query.compare('going', '=', true)
     console.log("ready for query...")
     UserEvent.setQuery(query).expand(['user_id']).find().then(res => {
+      console.log(res)
       console.log(res.data.objects)
       let user_events = res.data.objects;
       console.log(this.data.user_events);
       this.setData({ user_events })
+      return user_events
+    })
+  },
+
+  getUserEventsForDeletion: function (eventId) {
+    let query = new wx.BaaS.Query()
+    let UserEvent = new wx.BaaS.TableObject('user_event')
+    query.compare('event_id', '=', eventId)
+    console.log("ready for query...")
+    UserEvent.setQuery(query).find().then(res => {
+      let userEvents = res.data.objects;
+      userEvents.forEach((userEvent) => {
+        this.deleteUserEvent(userEvent.id)
+      })
+    })
+  },
+
+  deleteEvent: function () {
+    let Event = new wx.BaaS.TableObject('event')
+    let eventId = this.data.event.id
+    Event.delete(eventId).then(res => {
+      // success
+      let eventId = this.data.event.id
+      let userEvents = this.getUserEventsForDeletion(eventId)
+      wx.showToast({
+        title: `活动已删掉！`,
+        icon: 'success'
+      })
+      this.navigateToHome()
+    }, err => {
+      // err
+    })
+  },
+
+  deleteUserEvent: function (userEventId) {
+    let UserEvent = new wx.BaaS.TableObject('user_event')
+    UserEvent.delete(userEventId).then(res => {
+      // success
+    }, err => {
+      // err
     })
   },
 
@@ -287,7 +321,7 @@ Page({
     wx.BaaS.auth.getCurrentUser().then(user => { // Getting current_user information
       this.setData({ user })  // Saving current_user object to local page data
       this.getUserEvent(eventId, user.id)
-      this.getUserEvents(eventId)
+      this.getUserEvents(eventId)      
     }).catch(err => {
       // HError
       if (err.code === 604) {
@@ -344,13 +378,17 @@ Page({
   onReachBottom: function () {
 
   },
-
+ 
   /**
 
    * Called when user click on the top right corner to share
 
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '自定义转发标题',
+      path: `/pages/show/show?id=${this.data.event.id}`
+    }
   }
 })
+

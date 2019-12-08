@@ -27,7 +27,7 @@
                 <text class="date-content">{{ item.display_day }}</text>
               </view>
               <view class="time">
-                <!-- <text class="time-content">{{ item.display_time }}</text> -->
+                <text class="time-content">{{ item.display_time }}</text>
               </view>
             </view>
             <view class="info-3">

@@ -114,14 +114,18 @@ Page({
     })
   },
 
-  setDisplayDate: function(event) {
+  setDisplayDate: function (event) {
     let date = new Date(event.date)
 
-    // const date_array = date.toLocaleString().split(', ')
-    event.display_day = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`
-
-    event.display_time = `${date.getHours() - 8}时${date.getMinutes()}分`
+    // const dateArray = date.toLocaleString().split(', ')
+    event.display_day = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+    event.display_time = [date.getHours() + 8, date.getMinutes()].map(this.formatNumber).join(':')
     return event
+  },
+
+  formatNumber: function (n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
   },
 
 
@@ -155,5 +159,7 @@ Page({
   },
 
   onShow: function () {
+    this.getCurrentUser();
+    this.getEvents();
   },
 })
