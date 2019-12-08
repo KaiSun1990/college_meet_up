@@ -101,13 +101,16 @@ uploadImage: function () {
     let tableName = 'event'
     let Event = new wx.BaaS.TableObject(tableName)
     let event = Event.create()
-
+    let eventDate = new Date(this.data.event.date.concat(" ", this.data.event.time))
+    this.setData({
+      "event.date": (eventDate.toISOString()).toString(),
+    })
     let newEvent = {
       name: this.data.event.name,
       address: this.data.event.address,
       longitude: this.data.event.longitude,
       latitude: this.data.event.latitude,
-      date: this.data.event.date.concat(" ", this.data.event.time),
+      date: this.data.event.date,
       description: this.data.event.description,
       image: this.data.event.image,
       creator_avatar: this.data.user.avatar,
