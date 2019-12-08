@@ -4,7 +4,7 @@
  <image class='btn-photo' bindtap='uploadImage' src="{{event.image}}" >
  <view class="upload-img-all" wx:if="{{!event.image}}">
     <view class="upload-img" >
-      <image class='btnImg' src='../../image/image.gif'></image>
+      <image class='btnImg' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMNfRz5gzkEn.gif'></image>
       <view>上传封面(必填)</view>
     </view>
     <view class="upload-info">高质量的封面图片能带来更多浏览</view>
@@ -15,45 +15,47 @@
 
   <picker class="picker-main" mode="date" value="{{date}}" start="{{ dateNow }}" end="2020-09-01" bindchange="bindDateChange">
     <view class="picker">
-      <image class='picker-img' src='../../image/日期.png'></image>
+      <image class='picker-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMxZvQBHZSox.png'></image>
       <text>{{event.date || '日期'}}</text>
     </view>
   </picker>
 
   <picker class="picker-main" mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
     <view class="picker" >
-      <image class='picker-img' src='../../image/时间.png'></image>
+      <image class='picker-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMxz8hY4F7ot.png'></image>
       <text>{{event.time || '时间'}}</text>
     </view>
   </picker>
 </view>
 <view class="location-section">
   <view class = "location-btn" bindtap="getMapLocation">
-    <image class='picker-img' src='../../image/地点.png'></image>
+    <image class='picker-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMo2n8QhDIG8.png'></image>
     <text>{{event.address ||"添加地点"}}</text>
   </view> 
 </view>
 
-  <form class="form">
+  <view class="form">
     <view class="section">
       <input class="title" value="{{name}}" placeholder-class="place-holder" placeholder="★ 为你的活动写个标题吧" data-type="name" bindinput = "onChangeName"></input>
     </view>
     <view class="section">
       <view class="form-content">
-        <textarea class="content" placeholder-class="place-holder" value="{{description}}" placeholder="★ 介绍一下你的活动内容" data-type="content" bindinput = "onChangeContent"></textarea>
+        <textarea class="content" style="width: 100%; height: 100%" placeholder-class="place-holder" value="{{description}}" placeholder="★ 介绍一下你的活动内容" data-type="content" bindinput = "onChangeContent"></textarea>
       </view>
     </view>
 
-  <checkbox-group class="checkgroup" bindchange="checkboxChange">
-    <label class="checkbox" wx:for="{{items}}">
-      <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-    </label>
-  </checkbox-group>
+    <view class="bottom-section">
+      <checkbox-group class="checkgroup" bindchange="checkboxChange">
+        <label class="checkbox" wx:for="{{items}}">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+        </label>
+      </checkbox-group>
 
-  <view class="submit-btn">
-    <button style="width: 100%" type="primary" form-type="submit" bindtap="eventPackageSubmit">发布</button>
+      <view class="submit-btn">
+        <button style="width: 100%" type="primary" form-type="submit" bindtap="eventPackageSubmit">发布</button>
+      </view>
+    </view>
   </view>
-  </form>
 
 
 </view>

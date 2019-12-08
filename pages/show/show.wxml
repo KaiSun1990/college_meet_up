@@ -3,7 +3,7 @@
   <view class="top-section">
     <image  class = "avatar" mode = "aspectFill" src = "{{ event.creator_avatar }}" />
     <view class="h1">{{ event.name }}</view>
-    <image class='top-img' src='../../image/day.gif'></image>
+    <image class='top-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMiWewxPBOAj.gif'></image>
   </view>
 
   <view class="banner-card">
@@ -11,35 +11,39 @@
 
 
     <view class="participants-section">
-      <view>
-        <text>{{ event.people_going }}人 已报名</text>
-      </view>
-
-      <view wx:for="{{user_events}}" class="card-container" wx:key>
-        <view class="participants-avatars">
-          <image  class= "avatar-sm" mode = "aspectFill" src = "{{ item.user_id.avatar }}" />
+      <view class="index">
+        <view wx:for="{{user_events}}" class="card-container" wx:key style='transform:translateX({{-index*10}}rpx)'>
+          <view class="participants-avatars">
+            <image  class= "avatar-sm" mode = "aspectFill" src = "{{ item.user_id.avatar }}" />
+          </view>
         </view>
       </view>
 
-      <view>
-        <text>{{ event.people_saved }}人 已收藏</text>
+      <view class="status-info">
+        <image class='status-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMBIll4GcyYMm.gif'></image>
+        <text>{{ event.people_going }}人报名</text>
+      </view>
+
+      <view class="status-info">
+        <image class='status-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMM3JvegZhNi0.gif'></image>
+        <text>{{ event.people_saved }}人收藏</text>
       </view>
     </view>
 
 
     <view class="mid-section">
-      <button id="delete-btn" wx:if="{{event.created_by === user.id}}"  type="warn" bindtap="deleteEvent">删活动</button>
+      <button id="delete-btn" wx:if="{{event.created_by === user.id}}"  type="warn" bindtap="deleteEvent">删除活动</button>
 
       <view class="info">
-        <image class='picker-img' src='../../image/日期.png'></image>
+        <image class='picker-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMxZvQBHZSox.png'></image>
         <text>{{ event.display_day }}</text>
       </view>
       <view class="info">
-        <image class='picker-img' src='../../image/时间.png'></image>
+        <image class='picker-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMxz8hY4F7ot.png'></image>
         <text>{{ event.display_time }}</text>
       </view>
       <view class="info">
-        <image class='picker-img' src='../../image/地点.png'></image>
+        <image class='picker-img' src='https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMo2n8QhDIG8.png'></image>
         <text bindtap = "openLocation">{{ event.address }}</text>
       </view>
     </view>
@@ -55,22 +59,22 @@
 
 <view class="footer">
     <view class="icon-card" bindtap="navigateToHome">
-      <image class="icon" src="../../image/主页.png"></image>
+      <image class="icon" src="https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMgmchAxsK6a.png"></image>
       <text>主页</text>
     </view>
     <view wx:if="{{userEvent.saved}}" class="icon-card" bindtap="unsaveUserEvent">
-      <image class="icon" src="../../image/想看.png"></image>
+      <image class="icon" src="https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMM4LMEoGE3Ej.png"></image>
       <text>取消收藏</text>
     </view>
     <view wx:else class="icon-card" bindtap="saveUserEvent">
-      <image class="icon" src="../../image/已想看.png"></image>
+      <image class="icon" src="https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMngEe3NyCRN.png"></image>
       <text>收藏</text>
     </view>
     <view class="icon-card" open-type="share" bindtap="showShareMenu">
-      <button open-type="share" id="share">
-        <image class="icon" src="../../image/share.png"></image>
-        <text>分享</text>
-      </button>
+      <!-- <button open-type="share" id="share"> -->
+        <image class="icon" src="https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMM1pa6c1h2lE.png"></image>
+        <text  class="share">分享</text>
+      <!-- </button> -->
     </view>
   
 

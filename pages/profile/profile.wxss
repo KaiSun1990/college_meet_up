@@ -37,7 +37,7 @@
 .user-info .user-bio {
   font-size: 28rpx;
   font-weight: lighter;
-  height: 50rpx;
+  height: 100rpx;
   padding: 0 10rpx;
 }
 
