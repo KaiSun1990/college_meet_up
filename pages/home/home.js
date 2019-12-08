@@ -65,6 +65,15 @@ Page({
     filter:undefined,
   },
 
+  // onPullDownRefresh() {
+  //   let page = this
+  //   console.log("refereshing Working")
+  //   page.getEvents().then(() => {
+  //     // 处理完成后，终止下拉刷新
+  //     wx.stopPullDownRefresh()
+  //   })
+  // },
+
   onChange: function (e) {
     let filter = e.detail.checkedValues[0][0]
     this.setData({filter})
@@ -129,9 +138,9 @@ Page({
   },
 
 
-  loginWithWechat: function () {
-    wx.BaaS.auth.loginWithWechat().then(user => {
-      console.log(user)
+  loginWithWechat: function (data) {
+    wx.BaaS.auth.loginWithWechat(data).then(user => {
+      console.log("this is current user---->",user)
       this.setData({user})
     }, err => {
       console.log(err);

@@ -29,6 +29,7 @@
   <wux-segmented-control class="switch-bar" values="{{ ['我的报名', '我的收藏', '我的活动'] }}" bind:change="onChange" />
 </view>
 
+
 <!-- <view class="lib-bar">
   <view class="my-signup">
     <text>我的报名</text>
@@ -78,12 +79,9 @@
           <view class="date">
             <text class="date-content">{{ item.display_day }}</text>
           </view>
-          <view class="time">
-            <text class="time-content">{{ item.display_time }}</text>
-          </view>
         </view>
         <view class="info-3">
-          <view class="location">{{item.people_going}} 人已报名</view>
+          <view class="location">{{item.people_saved}} 人已收藏</view>
         </view>
       </view>
       <view class="card-left">
