@@ -50,12 +50,12 @@
   right: -10rpx;
 }
 
-.participants-avatars .avatar-sm {
+/* .participants-avatars .avatar-sm {
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
   margin-right: 10rpx;
-}
+} */
 
 .img {
   display: block;
@@ -83,8 +83,7 @@
   top: 10rpx;
   right: 0rpx;
   width: 200rpx;
-  padding: 4rpx auto;
-  font-size: 35rpx;
+  font-size: 28rpx;
 }
 
 #sign-up {
@@ -148,7 +147,7 @@
   width: 100rpx;
 }
 
-#share {
+/* #share {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -157,10 +156,56 @@
   width: 100rpx;
   background-color: #fff;
   padding: 0;
-}
+} */
 
 .icon-card .icon {
   margin: 5rpx;
   width: 50rpx;
   height: 50rpx;
+}
+
+
+.index {
+  width: 95vw;
+  height: auto;
+  position: relative;
+  display: flex;
+  flex-direction:columnl;
+  justify-content: flex-start;
+  padding:0 20rpx;
+  box-sizing: border-box;
+}
+ 
+.index view .avatar-sm {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  box-shadow: 0px 2rpx 5rpx 5rpx #c3c3c3;
+}
+view .avatar-sm:first-of-type {
+  transform: translateX(0px);
+}
+
+.participants-section {
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+/* .participants-section text{
+  margin-left: 20rpx;
+} */
+
+.status-info {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.status-img {
+  margin-right: 8rpx;
+  width: 60rpx;
+  height: 60rpx;
+  flex-shrink: 0;
 }
