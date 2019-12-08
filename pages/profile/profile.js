@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-    current: 1,
+    current: 0,
   },
 
   getUserEvents: function (id) {
@@ -46,6 +46,25 @@ Page({
     })
   },
 
+  getUserEventsCreated: function (id) {
+    console.log("fetching user_events....")
+    let query = new wx.BaaS.Query()
+    let UserEvent = new wx.BaaS.TableObject('user_event')
+
+    query.compare('user_id', '=', id)
+    console.log("ready for query...")
+    UserEvent.setQuery(query).expand(['event_id']).find().then(res => {
+      console.log(res.data.objects)
+      let user_events = res.data.objects;
+      console.log('created events', this.data.user_events);
+
+      user_events = user_events.map(user_event => this.setDisplayDate(user_event.event_id))
+      let user_events_created = user_events.filter(user_event => user_event.created_by === id);
+      this.setData({ user_events_created })
+    })
+  },
+
+
   getProfile: function () {
     let query = new wx.BaaS.Query()
     let Profile = new wx.BaaS.TableObject('edited_profile')
@@ -79,11 +98,16 @@ Page({
 
   setDisplayDate: function (event) {
     let date = new Date(event.date)
-    const date_array = date.toLocaleString().split(', ')
+
+    // const dateArray = date.toLocaleString().split(', ')
     event.display_day = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
-    event.display_time = `${date.getHours() - 8}时${date.getMinutes()}分`
+    event.display_time = [date.getHours() + 8, date.getMinutes()].map(this.formatNumber).join(':')
     return event
-    // 1. create date object. 2. create local string from date object. 3. parse array. 4. take first indecies of array and set to event.display.date 5. set all events to local data 
+  },
+
+  formatNumber: function (n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
   },
 
   /**
@@ -96,6 +120,7 @@ Page({
       this.setData({ user })
       this.getUserEvents(user.id)
       this.getUserEventsSaved(user.id)
+      this.getUserEventsCreated(user.id)
       
       
     }).catch(err => {
@@ -117,7 +142,21 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
+    wx.BaaS.auth.getCurrentUser().then(user => {
+      user.custom_nickname = user.get("custom_nickname")
+      user.bio = user.get("bio")
+      this.setData({ user })
+      this.getUserEvents(user.id)
+      this.getUserEventsSaved(user.id)
+      this.getUserEventsCreated(user.id)
 
+
+    }).catch(err => {
+      // HError
+      if (err.code === 604) {
+        console.log('用户未登录')
+      }
+    })
   },
 
   /**

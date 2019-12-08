@@ -28,6 +28,8 @@
 
 
     <view class="mid-section">
+      <button id="delete-btn" wx:if="{{event.created_by === user.id}}"  type="warn" bindtap="deleteEvent">删活动</button>
+
       <view class="info">
         <image class='picker-img' src='../../image/日期.png'></image>
         <text>{{ event.display_day }}</text>
@@ -64,11 +66,14 @@
       <image class="icon" src="../../image/已想看.png"></image>
       <text>收藏</text>
     </view>
-    <view class="icon-card" bindtap="onShareAppMessage">
-      <image class="icon share-btn" open-type="share" src="../../image/share.png"></image>
-      <text>分享</text>
+    <view class="icon-card" open-type="share" bindtap="showShareMenu">
+      <button open-type="share" id="share">
+        <image class="icon" src="../../image/share.png"></image>
+        <text>分享</text>
+      </button>
     </view>
+  
 
-  <button class="sign-up" wx:if="{{!userEvent.going}}" type="primary" bindtap="attendEvent">我要参加</button>
-  <button class="sign-up" wx:else  type="warn" bindtap="unsubscribeEvent">取消参加</button>
+  <button id="sign-up" wx:if="{{!userEvent.going}}" type="primary" bindtap="attendEvent">我要参加</button>
+  <button id="sign-up" wx:else  type="warn" bindtap="unsubscribeEvent">取消参加</button>
 </view>
