@@ -101,7 +101,7 @@ Page({
 
     // const dateArray = date.toLocaleString().split(', ')
     event.display_day = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
-    event.display_time = [date.getHours() + 8, date.getMinutes()].map(this.formatNumber).join(':')
+    event.display_time = [date.getHours(), date.getMinutes()].map(this.formatNumber).join(':')
     return event
   },
 
