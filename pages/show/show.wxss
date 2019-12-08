@@ -82,8 +82,9 @@
   position: absolute;
   top: 10rpx;
   right: 0rpx;
-  width: 200rpx;
+  width: 30vw;
   font-size: 28rpx;
+  text-align: center;
 }
 
 #sign-up {
