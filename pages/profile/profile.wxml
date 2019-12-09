@@ -16,7 +16,7 @@
           <text>收藏</text>
         </view>
         <view class="saved">
-          <text>{{user_events_created.length}}</text>
+          <text>{{events_created.length}}</text>
           <text>主办</text>
         </view>
       </view>
@@ -94,7 +94,7 @@
 
 <view wx:if="{{current===2}}" class="profile_event_container">
 
-<view wx:for="{{user_events_created}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>
+<view wx:for="{{events_created}}" class="card-container" catchtap="navigateToShow" data-type="edit" data-id="{{item.id}}" wx:key>
   <view class="event-card">
     <image  class= "event-img" mode = "aspectFill" src = "{{ item.image }}" />
     <view class="event-info">
