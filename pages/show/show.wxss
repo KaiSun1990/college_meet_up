@@ -148,16 +148,17 @@
   width: 100rpx;
 }
 
-/* #share {
+#share {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 24rpx;
+  font-weight: 549;
   width: 100rpx;
   background-color: #fff;
   padding: 0;
-} */
+}
 
 .icon-card .icon {
   margin: 5rpx;
