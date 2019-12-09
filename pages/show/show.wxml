@@ -70,12 +70,12 @@
       <image class="icon" src="https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMMngEe3NyCRN.png"></image>
       <text>收藏</text>
     </view>
-    <view class="icon-card" open-type="share" bindtap="showShareMenu">
-      <!-- <button open-type="share" id="share"> -->
-        <image class="icon" src="https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMM1pa6c1h2lE.png"></image>
-        <text  class="share">分享</text>
-      <!-- </button> -->
-    </view>
+    <button open-type="share" id="share">
+      <view class="icon-card" open-type="share" bindtap="showShareMenu">
+          <image class="icon" src="https://cloud-minapp-31851.cloud.ifanrusercontent.com/1idxMM1pa6c1h2lE.png"></image>
+          <text  class="share">分享</text>
+      </view>
+    </button>
   
 
   <button id="sign-up" wx:if="{{!userEvent.going}}" type="primary" bindtap="attendEvent">我要参加</button>
