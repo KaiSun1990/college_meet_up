@@ -46,21 +46,18 @@ Page({
     })
   },
 
-  getUserEventsCreated: function (id) {
-    console.log("fetching user_events....")
+  getEventsCreated: function (id) {
+    console.log("fetching events....")
     let query = new wx.BaaS.Query()
-    let UserEvent = new wx.BaaS.TableObject('user_event')
+    let Event = new wx.BaaS.TableObject('event')
 
-    query.compare('user_id', '=', id)
+    query.compare('created_by', '=', id)
     console.log("ready for query...")
-    UserEvent.setQuery(query).expand(['event_id']).find().then(res => {
+    Event.setQuery(query).find().then(res => {
       console.log(res.data.objects)
-      let user_events = res.data.objects;
-      console.log('created events', this.data.user_events);
-
-      user_events = user_events.map(user_event => this.setDisplayDate(user_event.event_id))
-      let user_events_created = user_events.filter(user_event => user_event.created_by === id);
-      this.setData({ user_events_created })
+      let events_created = res.data.objects;
+      console.log('created events', this.data.events_created);
+      this.setData({ events_created })
     })
   },
 
@@ -120,7 +117,7 @@ Page({
       this.setData({ user })
       this.getUserEvents(user.id)
       this.getUserEventsSaved(user.id)
-      this.getUserEventsCreated(user.id)
+      this.getEventsCreated(user.id)
       
       
     }).catch(err => {
@@ -148,7 +145,7 @@ Page({
       this.setData({ user })
       this.getUserEvents(user.id)
       this.getUserEventsSaved(user.id)
-      this.getUserEventsCreated(user.id)
+      this.getEventsCreated(user.id)
 
 
     }).catch(err => {
