@@ -10,7 +10,11 @@ Page({
     },
 
   eventPackageSubmit: function (e) {
-    let page = this
+    let user = this.data.user
+    wx.setStorage({
+      key: 'user',
+      data: user,
+    })
     wx.BaaS.auth.getCurrentUser()
       .then(user => {
         // age 为自定义字段
@@ -59,28 +63,16 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {
-    wx.BaaS.auth.getCurrentUser().then(user => {
 
-      // user 为 currentUser 
-      console.log(user)
-      console.log(user.nickname)
-      console.log(user.city)
-      console.log(user.province)
-      console.log(user.country)
-      console.log(user.gender)
-      user.custom_nickname = user.get("custom_nickname")
-      console.log(user.custom_nickname)
-      user.custom_city = user.get("custom_city")
-      console.log(user.custom_city)
-      user.bio = user.get("bio")
+  fetchEventData: function () {
+    let user = wx.getStorageSync('user')
+    if (user) {
       this.setData({ user })
-    }).catch(err => {
-      // HError
-      if (err.code === 604) {
-        console.log('用户未登录')
-      }
-    })
+    }
+  },
+
+  onLoad: function (options) {
+  this.fetchEventData()
   },
 
   /**

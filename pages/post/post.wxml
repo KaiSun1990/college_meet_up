@@ -42,6 +42,7 @@
       <view class="form-content">
         <textarea class="content" style="width: 100%; height: 100%" placeholder-class="place-holder" value="{{description}}" placeholder="★ 介绍一下你的活动内容" data-type="content" bindinput = "onChangeContent"></textarea>
       </view>
+     <text>{{error}}</text>
     </view>
 
     <view class="bottom-section">
@@ -56,7 +57,7 @@
       </view>
     </view>
   </view>
-
-
 </view>
 </view>
+
+{{error}}

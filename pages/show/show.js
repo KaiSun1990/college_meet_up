@@ -59,7 +59,15 @@ Page({
         let userEvent = res.data
         this.setData({ userEvent })
         this.getUserEvents(this.data.event.id)
+        wx.showToast({
+          title: `已成功报名！`,
+          icon: 'success'
+        })  
       }, err => {
+        wx.showToast({
+          title: `网络错误`,
+          icon: 'loading'
+        })  
       })
 
     } else { // change going to true, if User Event already existing
@@ -74,13 +82,19 @@ Page({
         let userEvent = res.data
         this.setData({ userEvent })
         this.getUserEvents(this.data.event.id)
+        wx.showToast({
+          title: `已成功报名！`,
+          icon: 'success'
+        })  
       }, err => {
+        wx.showToast({
+          title: `网络错误`,
+          icon: 'loading'
+        })  
       })
     }
-    wx.showToast({
-      title: `已成功报名！`,
-      icon: 'success'
-    })    
+
+     
   },
 
   unsubscribeEvent: function () {
@@ -99,7 +113,7 @@ Page({
       let event = res.data
       event = this.setDisplayDate(event)
       this.setData({ event })
-      console.log(res);
+      console.log(res)
     }, err => {
     })
 
@@ -113,13 +127,18 @@ Page({
       let userEvent = res.data
       this.setData({ userEvent })
       this.getUserEvents(this.data.event.id)
+      wx.showToast({
+        title: `取消成功！`,
+        icon: 'success'
+      })
     }, err => {
+      wx.showToast({
+        title: `网络错误`,
+        icon: 'loading'
+      })  
     })
   
-    wx.showToast({
-      title: `取消成功！`,
-      icon: 'success'
-    })
+    
   },
 
   unsaveUserEvent: function () {
@@ -138,6 +157,10 @@ Page({
       event = this.setDisplayDate(event)
       this.setData({ event })
     }, err => {
+      wx.showToast({
+        title: `网络错误`,
+        icon: 'loading'
+      })  
     })
 
     let userEvent = this.data.userEvent
@@ -150,13 +173,19 @@ Page({
       let userEvent = res.data
       this.setData({ userEvent })
       this.getUserEvents(this.data.event.id)
+      wx.showToast({
+        title: `成功取消收藏`,
+        icon: 'success'
+      })    
     }, err => {
+      wx.showToast({
+        title: `网络错误`,
+        icon: 'loading'
+      })  
+     
     })
 
-    wx.showToast({
-      title: `成功取消收藏`,
-      icon: 'success'
-    })    
+   
   },
 
   saveUserEvent: function () {
@@ -176,6 +205,10 @@ Page({
       event = this.setDisplayDate(event)
       this.setData({ event })
     }, err => {
+      wx.showToast({
+        title: `网络错误`,
+        icon: 'loading'
+      })  
     })
     
     if (this.data.userEvent) { // updating "saved" to true in DB, if User Event already exists
@@ -191,6 +224,10 @@ Page({
         this.setData({ userEvent })
         this.getUserEvents(this.data.event.id)
       }, err => {
+        wx.showToast({
+          title: `网络错误`,
+          icon: 'loading'
+        })  
       }) 
        
     } else { // Creating new User Event and saving into DB, if User Event doens not exist yet
@@ -206,13 +243,19 @@ Page({
         let userEvent = res.data
         this.setData({ userEvent })
         this.getUserEvents(this.data.event.id)
+        wx.showToast({
+          title: `已成功收藏！`,
+          icon: 'success'
+        })
       }, err => {
+        wx.showToast({
+          title: `网络错误`,
+          icon: 'loading'
+        })  
+       
       })
      }
-        wx.showToast({
-      title: `已成功收藏！`,
-      icon: 'success'
-    })
+       
       },
 
   navigateToHome: function () {
@@ -315,19 +358,17 @@ Page({
     })
   },
 
+  fetchEventData: function (eventId) {
+    let user = wx.getStorageSync('user')
+    this.setData({user})
+    this.getUserEvent(eventId, user.id)
+    this.getUserEvents(eventId)
+  },
+
   onLoad: function (options) {
     let eventId = options.id // Setting eventId from Page properties
     this.getEvent(eventId) // Getting Event object by search with Event ID
-    wx.BaaS.auth.getCurrentUser().then(user => { // Getting current_user information
-      this.setData({ user })  // Saving current_user object to local page data
-      this.getUserEvent(eventId, user.id)
-      this.getUserEvents(eventId)      
-    }).catch(err => {
-      // HError
-      if (err.code === 604) {
-        console.log('用户未登录')
-      }
-    })
+    this.fetchEventData(eventId)
   },
 
   /**
@@ -341,7 +382,7 @@ Page({
 
    * Lifecycle function--Called when page show
    */
-  onShow: function () {
+  onShow: function (options) {
 
   },
 
@@ -386,7 +427,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '自定义转发标题',
+      title: '',
       path: `/pages/show/show?id=${this.data.event.id}`
     }
   }

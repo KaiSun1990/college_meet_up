@@ -40,7 +40,7 @@ dateToday: function () {
   if (day < 10) {
     day = '0' + day;
   };
-  let formatDate = year + '-' + month + '-' + day;
+  let formatDate = year + '/' + month + '/' + day;
   console.log(formatDate)
   this.setData({
     "dateNow": formatDate
@@ -72,8 +72,14 @@ uploadImage: function () {
   },
 
   bindDateChange: function (e) {
+    let dateOrigin = e.detail.value
+    let dateSplit = dateOrigin.split("-")
+    let y = dateSplit[0]
+    let m = dateSplit[1]
+    let d = dateSplit[2]
+    let dateFormated = y + '/' + m + '/' + d
     this.setData({
-      "event.date": e.detail.value
+      "event.date": dateFormated
     })
   },
 
@@ -101,36 +107,24 @@ uploadImage: function () {
     let tableName = 'event'
     let Event = new wx.BaaS.TableObject(tableName)
     let event = Event.create()
-    let eventDate = new Date(this.data.event.date.concat(" ", this.data.event.time))
-    this.setData({
-      "event.date": (eventDate.toISOString()).toString(),
-    })
+    let eventDate = new Date(`${this.data.event.date} ${this.data.event.time}`)
     let newEvent = {
       name: this.data.event.name,
       address: this.data.event.address,
       longitude: this.data.event.longitude,
       latitude: this.data.event.latitude,
-      date: this.data.event.date,
+      date: (eventDate.toISOString()).toString(),
       description: this.data.event.description,
       image: this.data.event.image,
       creator_avatar: this.data.user.avatar,
-      tag: this.data.event.tag 
+      tag: this.data.event.tag
     }
     console.log('My event package ----->' , newEvent)
 
     event.set(newEvent).save().then(res => {
-      // success
-      console.log("My upload package----->", res)
-      wx.showToast({
-      title: 'Posted',
-      icon: 'success',
-      })
-      wx.reLaunch({
-        url: '/pages/home/home',
-      })
-    }, err => {
-      //err 为 HError 对象
-    })
+      wx.showToast({ title: 'Posted', icon: 'success' })
+      wx.reLaunch({ url: '/pages/home/home' })
+    }).catch(err => wx.showModal({title: "Error", content: err }))
   },
 
 
@@ -148,26 +142,22 @@ uploadImage: function () {
     })
   },
 
-  onLoad: function (options) {
-    wx.BaaS.auth.getCurrentUser().then(user => {
-
-      // user 为 currentUser 
-      console.log(user)
-      console.log(user.nickname)
-      console.log(user.city)
-      console.log(user.province)
-      console.log(user.country)
-      console.log(user.gender)
-      this.setData({ user })
-    }).catch(err => {
-      // HError
-      if (err.code === 604) {
-        console.log('用户未登录')
+  getUserInfoInStorage: function () {
+    wx.getStorage({
+      key: 'user',
+      success: res => {
+        let user = res.data
+        this.setData({ user })
       }
     })
   },
 
+  onLoad: function (options) {
+    
+  },
+
   onShow: function() {
     this.dateToday()
+    this.getUserInfoInStorage()
   }
 })
