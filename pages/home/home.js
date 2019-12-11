@@ -12,15 +12,15 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: 'https://cn.bing.com/th?id=OIP.7gWe7BgHfE50dH7gSR1w4gHaE1&pid=Api&rs=1'
+      url: 'https://cloud-minapp-31851.cloud.ifanrusercontent.com/1iezpF5nPsQwrvnz.jpg'
     }, {
       id: 1,
       type: 'image',
-        url: 'https://cn.bing.com/th?id=OIP.MFZnOQcMxUfNcF-oR-Oo2AHaD4&pid=Api&rs=1',
+        url: 'https://cloud-minapp-31851.cloud.ifanrusercontent.com/1iezpFRtGTiIt8sn.jfif',
     }, {
       id: 2,
       type: 'image',
-        url: 'https://www.desicomments.com/wp-content/uploads/2018/10/Weekend-Loading.jpg'
+        url: 'https://cloud-minapp-31851.cloud.ifanrusercontent.com/1iezpFD7OrXmRbwx.jfif'
     }],
 
     items: [
@@ -141,7 +141,13 @@ Page({
   loginWithWechat: function (data) {
     wx.BaaS.auth.loginWithWechat(data).then(user => {
       console.log("this is current user---->",user)
-      this.setData({user})
+      user.custom_nickname = user.get("custom_nickname")
+      user.bio = user.get("bio")
+      wx.setStorage({
+        key: 'user',
+        data: user,
+      })
+      this.setData({ user })
     }, err => {
       console.log(err);
       // 登录失败
@@ -161,14 +167,13 @@ Page({
     })
   },
 
-  onLoad: function (options) {
-    this.getCurrentUser();
-    this.getEvents();
-    
+  onLoad: function (options) { 
+    this.getCurrentUser()
+    this.getEvents()
   },
 
   onShow: function () {
-    this.getCurrentUser();
-    this.getEvents();
+    this.getCurrentUser()
+    this.getEvents()
   },
 })

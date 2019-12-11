@@ -110,22 +110,19 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {
-    wx.BaaS.auth.getCurrentUser().then(user => {
-      user.custom_nickname  = user.get("custom_nickname")
-      user.bio = user.get("bio")
+
+  fetchEventData: function () {
+    let user = wx.getStorageSync('user')
+    if (user) {
       this.setData({ user })
       this.getUserEvents(user.id)
       this.getUserEventsSaved(user.id)
       this.getEventsCreated(user.id)
-      
-      
-    }).catch(err => {
-      // HError
-      if (err.code === 604) {
-        console.log('用户未登录')
-      }
-    })
+    } 
+  },
+
+  onLoad: function (options) {
+    // this.fetchEventData()
   },
 
   /**
@@ -139,21 +136,7 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    wx.BaaS.auth.getCurrentUser().then(user => {
-      user.custom_nickname = user.get("custom_nickname")
-      user.bio = user.get("bio")
-      this.setData({ user })
-      this.getUserEvents(user.id)
-      this.getUserEventsSaved(user.id)
-      this.getEventsCreated(user.id)
-
-
-    }).catch(err => {
-      // HError
-      if (err.code === 604) {
-        console.log('用户未登录')
-      }
-    })
+    this.fetchEventData()
   },
 
   /**
